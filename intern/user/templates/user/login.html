@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>login</title>
+</head>
+
+<body>
+    <form method="post" action="{% url 'user:login' %}" autocomplete="off" role="main">
+        {% csrf_token %}
+
+        <input type="text" name="username" placeholder="Username">
+        <span class="required">Username</span>
+
+
+        <input type="password" name="password" placeholder="Password">
+        <span class="required">Password</span>
+
+
+        <input type="submit" value="Login">
+
+        {% if messages %}
+        {% for message in messages %}
+        <div{% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+
+    </form>
+</body>
+
+</html>
