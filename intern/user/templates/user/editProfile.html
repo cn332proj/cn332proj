@@ -1,0 +1,45 @@
+<!-- templates/registration/password_reset_confirm.html -->
+{% extends 'registration/base_editprofile.html' %}
+
+{% block title %}Enter new password{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+  <div class="title">Edit your profile</div><br>
+  <form method="post">
+  <form action="#">
+    <div class="user-detail">
+      <div class="input-box">
+        {% csrf_token %}
+        <span class="detail"for={{form.username}} Username:{{ form.username }} </span>
+
+      </div>
+      <div class="input-box">
+        {% csrf_token %}
+        <span class="detail" for={{form.last_name}} Email:{{ form.email }} </span>
+
+      </div>
+      <div class="input-box">
+        {% csrf_token %}
+        <span class="detail" for={{form.first_name}} First Name:{{ form.first_name }}</span>
+
+      </div>
+      <div class="input-box">
+        {% csrf_token %}
+        <span class="detail" for={{form.last_name}} Last Name:{{ form.last_name }} </span>
+
+      </div>
+    </div>
+    <br><br>
+    <div class="button">
+      <center><button type="submit">Confirm changed</button></center>
+    </div>
+  </form>
+</form>
+</div>
+
+
+
+{% endblock %}
