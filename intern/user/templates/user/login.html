@@ -1,31 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>login</title>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
+    </head>
+    {% block body %}
+      <form method="post" action="{% url 'user:login' %}" id="login-form" class="login-form" autocomplete="off" role="main">
+          {% csrf_token %}
+          <h1 class="a11y-hidden">Login Form</h1>
+            <div>
+              <label class="label-email">
+                <input type="text" name="username" placeholder="Username">
+                <span class="required">Username</span>
+              </label>
+              <label class="label-password">
+                <input type="password" name="password" placeholder="Password">
+                <span class="required">Password</span>
+              </label>
+            </div>
+            <input type="submit" value="Login" >
+            <figure aria-hidden="true">
+              <div class="person-body"></div>
+              <div class="neck skin"></div>
+              <div class="head skin">
+              <div class="eyes"></div>
+              <div class="mouth"></div>
+              </div>
+              <div class="hair"></div>
+              <div class="ears"></div>
+              <div class="shirt-1"></div>
+              <div class="shirt-2"></div>
+            </figure>
+          {% if messages %}
+          {% for message in messages %}
+          <div{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+          {% endfor %}
+    {% endif %}
 
-<head>
-    <title>login</title>
-</head>
+      </form>
 
-<body>
-    <form method="post" action="{% url 'user:login' %}" autocomplete="off" role="main">
-        {% csrf_token %}
-
-        <input type="text" name="username" placeholder="Username">
-        <span class="required">Username</span>
-
-
-        <input type="password" name="password" placeholder="Password">
-        <span class="required">Password</span>
-
-
-        <input type="submit" value="Login">
-
-        {% if messages %}
-        {% for message in messages %}
-        <div{% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
-            {% endfor %}
-            {% endif %}
-
-    </form>
-</body>
-
-</html>
+{% endblock %}
