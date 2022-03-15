@@ -1,6 +1,7 @@
 html, body {
   align-items: center;
-  background: #e7dab0;
+  background-color: #f5e3aa;
+  /*background-image: url("images/bg.jpeg");*/
   border: 0;
   display: flex;
   font-family: Helvetica, Arial, sans-serif;
@@ -160,15 +161,15 @@ input[type="submit"]:focus {
 }
 
 input[type="submit"]:focus {
-  background: hsl(var(--fgColorH), var(--fgColorS), calc(var(--fgColorL) * 0.85));
+  background: red;
 }
 
 input[type="submit"]:hover {
-  background: hsl(var(--fgColorH), var(--fgColorS), calc(var(--fgColorL) * 0.85));
+  background: red;
 }
 
 input[type="submit"]:active {
-  background: hsl(var(--fgColorH), calc(var(--fgColorS) * 2), calc(var(--fgColorL) * 1.15));
+  background: red ;
   transition: all 0.125s;
 }
 
