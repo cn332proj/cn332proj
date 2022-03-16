@@ -15,4 +15,14 @@ def index(request):
 
 def start(request):
     return render(request, "main/start.html")
+
+def news(request):
+    news = New.objects.all()
+    context = {"news": news}
+    return render(request, "doctors/news.html", context)
+
+def news_content(request, pk):
+    new = New.objects.filter(id=pk).first()
+    context = {"new": new}
+    return render(request, "doctors/news_one.html", context)
             

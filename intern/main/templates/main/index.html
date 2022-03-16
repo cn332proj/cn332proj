@@ -53,6 +53,12 @@
   <div class="text-box">
     <h1> Public Relations </h1>
     <p> Please select your ingredient and enjoy your recipe</p>
+    {% for new in news %}
+      <img src="{{new.img.url}}">
+          <h3>{{ new.header }}</h3>
+          <p>{{ new.context }}</p>
+            <a href="{% url 'main:news_content' new.id %}" class="read-more">detail</a>
+    {% endfor %}
     <a href="{% url 'main:start' %}" class="hero-btn">START STEP</a>
   </div>
 </section>
