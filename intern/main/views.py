@@ -12,4 +12,7 @@ def index(request):
         return HttpResponseRedirect(reverse("user:login"))
     else:
         return render(request, "main/index.html")
+
+def start(request):
+    return render(request, "main/start.html")
             
