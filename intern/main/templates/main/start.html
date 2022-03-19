@@ -1,0 +1,36 @@
+{% extends "main/base_01.html" %}
+
+
+
+{%block content%}    
+<div class="container ">
+<div class="btn-group  d-flex justify-content-center" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-primary btn-group-sm" checked>1</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" class="btn btn-outline-primary btn-group-sm" disabled>2</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" class="btn btn-outline-primary btn-group-sm" disabled>3</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" class="btn btn-outline-primary btn-group-sm" disabled>4</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" class="btn btn-outline-primary btn-group-sm" disabled>5</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+<br><br>
+
+<h4>Step 1 : อัพโหลดแบบฟอร์มหนังสือขอความอนุเคราะห์</h4>
+<br><br>
+
+
+<label for="formFileSm" class="form-label">upload file .pdf</label>
+<form class="row g-2" action="{%url 'main:step1_1'%}" method="post" enctype="multipart/form-data">
+   {% csrf_token %}
+  <div class="col-auto">
+    
+    <input class="form-control form-control-sm" name="file1" type="file">
+  </div>
+  <div class="col-auto">
+    
+    <button type="submit" class="btn btn-primary btn-sm ">submit</button>
+  </div>
+</form>
+
+
+</div>
+
+{%endblock%}

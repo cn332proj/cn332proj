@@ -129,3 +129,12 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MAX_UPLOAD_SIZE = 524288000
+FILE_UPLOAD_MAX_MEMORY_SIZE = 524288000
+DATA_UPLOAD_MAX_MEMORY_SIZE = 524288000
+
+MEDIA_URL = '/file/'
+STATIC_ROOT = os.path.join(BASE_DIR)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'file')
