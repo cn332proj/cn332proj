@@ -10,6 +10,6 @@ urlpatterns = [
     
     #ข่าว
     path('news', views.news, name="news"),
-    path('news/<pk>', views.news_content, name="news_content"),
+   path('news/<int:number>', views.news_content, name="news_content"),
 ]
    
