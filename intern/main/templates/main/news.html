@@ -1,0 +1,5 @@
+{% for news in news %}
+    <title> {{news.header }}</title>
+    <a href="{% url 'main:news_content' news.id %}" class="read-more">{{ news.header }}</a>
+
+{% endfor %}

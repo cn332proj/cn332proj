@@ -28,7 +28,7 @@ def start(request):
 def news(request):
     news = News.objects.all()
     context = {"news": news}
-    return render(request, "doctors/news.html", context)
+    return render(request, "main/news.html", context)
 
 def news_content(request, number):
     fs= FileSystemStorage()
