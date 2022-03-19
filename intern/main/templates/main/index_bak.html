@@ -1,0 +1,66 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="with=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{%static 'css/base_main.css' %}">
+  <!-- <title>{% block title %}Django Auth Tutorial{% endblock %}</title> -->
+</head>
+
+
+{% block content %}
+
+<!-- <h1>Public Relations</h1>
+<h2><a href="{% url 'main:start' %}">START STEP</a></h2>
+<a href="{% url 'user:logout' %}">Log out</a> -->
+
+<section class="header">
+    <nav>
+      <a href="#">
+        {% load static %}
+        <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
+     
+  <div class="nav-links" id="navLinks">
+    <ul>
+      
+      <li><a href="#">Home</a></li>
+      <li><a href="#">option1</a></li>
+      <li><a href="#">Menu</a>
+        <div class="sub-about">
+          <ul>
+            <li><a href = "#" >sub1</a></li>
+            <li><a href = "#" >sub2</a></li>
+            <li><a href = "#" >sub3</a></li></li>
+        </ul>
+      </div>
+      </li>
+      <li><a href="#" class="About">About</a>
+       <div class="sub-about">
+            <ul>
+                <li><a href="#">Contact us</a></li>
+                <li><a href="#">Git Hub</a></li>
+                <li><a href="#">Youtube</a></li>
+            </ul>
+        </div>
+      </li>
+      <!-- <li ><a href="#">Log In</a></li> -->
+      <li ><a href="{% url 'user:logout' %}">Log out</a></li>
+</ul></div>
+</nav>
+  <div class="text-box">
+    <h1> Public Relations </h1>
+    <p> Please select your ingredient and enjoy your recipe</p>
+    {% for new in news %}
+      <img src="{{new.img.url}}">
+          <h3>{{ new.header }}</h3>
+          <p>{{ new.context }}</p>
+            <a href="{% url 'main:news_content' new.id %}" class="read-more">detail</a>
+    {% endfor %}
+    <a href="{% url 'main:start' %}" class="hero-btn">START STEP</a>
+  </div>
+</section>
+
+{% endblock %}

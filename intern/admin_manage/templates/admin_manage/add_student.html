@@ -1,0 +1,43 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="with=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{%static 'css/base_main.css' %}">
+  <!-- <title>{% block title %}Django Auth Tutorial{% endblock %}</title> -->
+</head>
+
+
+{% block content %}
+
+{% for i in messages%}
+ <div class="alert alert-success" role="alert">   
+  <br>
+<center>{{i}}</center>  </div>
+<meta http-equiv="refresh" content="4">
+ {%endfor%} 
+
+<!-- <h1>Public Relations</h1>
+<h2><a href="{% url 'main:start' %}">START STEP</a></h2>
+<a href="{% url 'user:logout' %}">Log out</a> -->
+<br><br>
+<form action="{% url 'admin_manage:add_student2' %}"  method="post" enctype="multipart/form-data">
+                    {% csrf_token %}  
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">student id column : </label>
+                      <input type="text" class="form-control" name="column">
+                    </div>
+                    <div class="mb-3">
+                      <label for="formFile" class="form-label">sheet </label>
+                      <input class="form-control" type="file" name="sheet">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mb-2">Add</button>           
+                   </form>
+
+
+{% endblock %}
