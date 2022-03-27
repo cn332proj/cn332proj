@@ -1,62 +1,10 @@
 {% extends "main/base_01.html" %}
 {%block content%} 
 
-<!-- {% for news in news %}
+{% for news in news %}
     <title> {{news.header }}</title>
     <a href="{% url 'main:news_content' news.id %}" class="read-more">{{ news.header }}</a>
-
-{% endfor %} -->
-
-    <div class="containertable">
-        <h1>All Courses</h1>
-
-
-        <div class="table">
-        <table class="content-table">
-            <thead>
-                <tr>
-                    <th>bookmark</th>
-                    <th>Company</th>
-                    <th>Description</th>
-                    <th>Published</th>
-                    <th>Close</th>
-                    <th>Major</th>
-                    <th>Link</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for news in news %}
-                <tr>
-                    <th><input type="checkbox"></th>
-                    <td>name Company</td>
-                    <td>description</td>
-                    <td>start</td>
-                    <td>end</td>
-                    <td>computer</td>
-                    <td><a href="{% url 'main:news_content' news.id %}">Click</a></td>
-                </tr>
-                {% endfor %}
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>name Company</td>
-                    <td>description</td>
-                    <td>start</td>
-                    <td>end</td>
-                    <td>computer</td>
-                    <td><a href="#">Click</a></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>name Company</td>
-                    <td>description</td>
-                    <td>start</td>
-                    <td>end</td>
-                    <td>computer</td>
-                    <td><a href="#">Click</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+{% endfor %}
 
 
 {% endblock %}

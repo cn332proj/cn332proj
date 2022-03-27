@@ -1,9 +1,38 @@
+{% extends "main/base_01.html" %}
 {%block content%} 
-{% for company in company %}
-               {{ company.Company}} ||
-               {{ company.Description}} ||
-               {{ company.Published}} ||
-               {{ company.close}} ||
-               <a href="{{ company.link }} ">Click</a><br>
-{% endfor %}
+
+
+    <div class="containertable">
+        <h1>All Courses</h1>
+
+
+        <div class="table">
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>bookmark</th>
+                    <th>Company</th>
+                    <th>Description</th>
+                    <th>Published</th>
+                    <th>Close</th>
+                    <th>Major</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for company in company %}
+                <tr>
+                    <th><input type="checkbox"></th>
+                    <td>{{ company.Company}}</td>
+                    <td>{{ company.Description}}</td>
+                    <td>{{ company.Published}}</td>
+                    <td>{{ company.close}}</td>
+                    <td>computer</td>
+                    <td><a href="{{ company.link }} ">Click</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}
