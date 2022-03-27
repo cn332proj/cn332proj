@@ -30,6 +30,11 @@ def news(request):
     context = {"news": news}
     return render(request, "main/news.html", context)
 
+def company(request):
+    company = Company.objects.all()
+    context = {"company": company}
+    return render(request, "main/companylist.html", context)
+
 def news_content(request, number):
     fs= FileSystemStorage()
     file = (get_object_or_404(News,pk = number)).pdf

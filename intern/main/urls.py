@@ -12,5 +12,8 @@ urlpatterns = [
     #ข่าว
     path('news', views.news, name="news"),
     path('news/<int:number>', views.news_content, name="news_content"),
+
+    #บริษัท
+    path('CompanyList', views.company, name="company"),
 ]
    
