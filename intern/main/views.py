@@ -1,11 +1,12 @@
 from ast import Delete
 from email.mime import application
 import os
-
+import io
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from numpy import full
 from .models import *
 from django.template.loader import *
 from django.db.models import Sum
@@ -13,6 +14,7 @@ from django.core.files.storage import *
 from django.http import *
 from django.shortcuts import render ,get_object_or_404
 from shutil import copyfile
+from reportlab.pdfgen import canvas
 # Create your views here.
 # main
 
@@ -68,3 +70,13 @@ def step1_1(request):
             copyfile("file/" + file_path + name, "static/file/test/" + name)
             os.remove("file/" + file_path + name)    
     return render(request, "main/success.html")
+
+def toPDF(request):
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+    p.drawString(50,700,"test")
+    p.drawString(50,600,"to PDF")
+    p.showPage()
+    p.save()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='แบบตอบรับนักศึกษาฝึกงานภาคฤดูร้อน.pdf')
