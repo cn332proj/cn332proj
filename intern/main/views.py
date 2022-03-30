@@ -2,10 +2,12 @@ from ast import Delete
 from email.mime import application
 import os
 import io
+from unittest import result
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from matplotlib.style import context
 from numpy import full
 from .models import *
 from django.template.loader import *
@@ -15,6 +17,9 @@ from django.http import *
 from django.shortcuts import render ,get_object_or_404
 from shutil import copyfile
 from reportlab.pdfgen import canvas
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 # Create your views here.
 # main
 
@@ -71,12 +76,35 @@ def step1_1(request):
             os.remove("file/" + file_path + name)    
     return render(request, "main/success.html")
 
+data = {
+    "company" : "ptt"
+}
+from django.template.loader import *
 def toPDF(request):
-    buffer = io.BytesIO()
-    p = canvas.Canvas(buffer)
-    p.drawString(50,700,"test")
-    p.drawString(50,600,"to PDF")
-    p.showPage()
-    p.save()
-    buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename='แบบตอบรับนักศึกษาฝึกงานภาคฤดูร้อน.pdf')
+    
+    form = get_object_or_404(Form,user=request.user)
+    # pattern = get_object_or_404(Form)
+    template_path = 'main/toPDF.html'
+    context = {'form' : "ANUDCHANA อนุชนา 6210612575 " ,}
+    #  'paatern' : pattern} 
+    response = HttpResponse(content_type='application/pdf')
+    response ['Content-Dinposition'] =  'fliename = "test.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    # pdf = render_to_pdf('main/toPDF.html',data)
+    # return HttpRequest(pdf , content_type='application/pdf')
+    pisa_status = pisa.CreatePDF(
+       html.encode("UTF-8"), dest=response )
+    if pisa_status.err:
+        return HttpResponse('We had some error <pre>'+html+'</pre>')
+    return response
+# from django.shortcuts import render
+# from io import BytesIO
+# def render_to_pdf(template_src,context_dict={}):
+#     template = get_template(template_src)
+#     html = template.render(context_dict)
+#     result = BytesIO()
+#     pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")),result)
+#     if not pdf.err:
+#         return HttpResponse(result.getvalue(),content_type='application/pdf')
+#     return None
