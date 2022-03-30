@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Style>
+
+        body {
+            color: aquamarine;
+        }
+
+        #element-to-print {
+            padding: 20px;
+            background-color: royalblue;
+        }
+    </Style>
+</head>
+<body>
+    <div id="element-to-print">
+        
+        Hello คุณ ปราโมทย์ 
+ 
+ 
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var element = document.getElementById('element-to-print');
+var opt = {
+  margin:       1,
+  filename:     'myfile.pdf',
+  image:        { type: 'jpeg', quality: 0.98 },
+  html2canvas:  { scale: 2 },
+  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+};
+ 
+// New Promise-based usage:
+html2pdf().set(opt).from(element).save();
+ 
+// Old monolithic-style usage:
+html2pdf(element, opt);
+</script>
+</html>

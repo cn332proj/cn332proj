@@ -15,6 +15,6 @@ urlpatterns = [
 
     #บริษัท
     path('CompanyList', views.company, name="company"),
-    path('test', views.toPDF, name="test"),
+    path('test', views.test, name="test"),
 ]
    

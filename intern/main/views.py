@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
-from matplotlib.style import context
+# from matplotlib.style import context
 from numpy import full
 from .models import *
 from django.template.loader import *
@@ -108,3 +108,6 @@ def toPDF(request):
 #     if not pdf.err:
 #         return HttpResponse(result.getvalue(),content_type='application/pdf')
 #     return None
+
+def test(request):
+    return render(request, "main/piemaleawjaa.html")
