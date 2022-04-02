@@ -20,3 +20,31 @@ class Company(models.Model):
 
     def __str__(self):
         return self.Company
+
+
+
+class Document(models.Model):
+    Document_ID = models.BigAutoField(auto_created=True, primary_key=True)
+    Document_student_id = models.CharField(max_length=20 ,null=True)
+    Document_file1_id = models.CharField(max_length=200 ,null=True)
+    Document_file2_id = models.CharField(max_length=200 ,null=True)
+    Document_file3_id = models.CharField(max_length=200 ,null=True)
+  
+
+
+class File1(models.Model):
+    File1_ID = models.BigAutoField(auto_created=True, primary_key=True)
+    File1_name = models.CharField(max_length=200 ,null=True)
+    File1_history_id = models.CharField(max_length=200 ,null=True)
+    File1_date = models.DateTimeField(default=timezone.now)
+  
+
+
+class History(models.Model):
+    History_ID = models.BigAutoField(auto_created=True, primary_key=True)
+    History_student_id = models.CharField(max_length=20 ,null=True)
+    History_file_id = models.CharField(max_length=200 ,null=True)
+    History_admin_id = models.CharField(max_length=200 ,null=True)
+    History_file_type = models.CharField(max_length=1 ,null=True)
+    History_date = models.DateTimeField(default=timezone.now)
+  

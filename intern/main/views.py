@@ -25,7 +25,7 @@ def index(request):
         return render(request, "main/index.html")
 
 def start(request):
-    return render(request, "main/start.html")
+    return render(request, "main/step1.html")
 
 def news(request):
     news = News.objects.all()

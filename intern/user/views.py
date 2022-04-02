@@ -8,17 +8,13 @@ import requests
 import pandas as pd
 # Create your views here.
 
+def index(request):
+    return redirect("/login")
 
-#news
-# def news(request):
-#     news = News.objects.all()
-#     context = {"news": news}
-#     return render(request, "doctors/news.html", context)
-
-
-# login
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect(reverse("main:index"))
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -38,14 +34,13 @@ def login_view(request):
                 messages.info(request, "invalid Student ID or password")
     return render(request, 'user/login.html')
     
+
 def logout_view(request):
     logout(request)
     messages.success(request, "Logged out.")
     return render(request, "user/login.html", {
         "messages": messages.get_messages(request)
     })
-
-
 
 
 ### login with tu api
