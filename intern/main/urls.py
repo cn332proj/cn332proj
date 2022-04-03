@@ -1,7 +1,6 @@
 from django.urls import path
-
 from . import views
-
+from .views import *
 app_name="main"
 
 urlpatterns = [
@@ -15,6 +14,8 @@ urlpatterns = [
 
     #บริษัท
     path('CompanyList', views.company, name="company"),
-    path('test', views.toPDF, name="test"),
+    path('start', Step1Form.as_view(), name="Step1Form"),
+    path('Step1', views.Step1toPDF, name="Step1"),
+    path('Step2', views.Step2toPDF, name="Step2"),
 ]
    

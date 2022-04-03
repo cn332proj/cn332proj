@@ -2,10 +2,13 @@ from ast import Delete
 from email.mime import application
 import os
 import io
+from unittest import result
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from matplotlib import dates
+# from matplotlib.style import context
 from numpy import full
 from .models import *
 from django.template.loader import *
@@ -15,6 +18,24 @@ from django.http import *
 from django.shortcuts import render ,get_object_or_404
 from shutil import copyfile
 from reportlab.pdfgen import canvas
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from io import *
+from django.forms.widgets import NullBooleanSelect
+from django.shortcuts import render ,get_object_or_404
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic.edit import CreateView
+from .forms import *
+from django.urls import reverse_lazy
+from . import views
+# Create your views here.
+
+from django.contrib.auth.models import User
+
+from .models import *
 # Create your views here.
 # main
 
@@ -25,7 +46,7 @@ def index(request):
         return render(request, "main/index.html")
 
 def start(request):
-    return render(request, "main/step1.html")
+    return render(request, "main/start.html")
 
 def news(request):
     news = News.objects.all()
@@ -71,12 +92,100 @@ def step1_1(request):
             os.remove("file/" + file_path + name)    
     return render(request, "main/success.html")
 
-def toPDF(request):
+data = {
+    "company" : "ptt"
+}
+
+
+from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+    
+# from django.template.loader import *
+def Step1toPDF(request):
+    
     buffer = io.BytesIO()
-    p = canvas.Canvas(buffer)
-    p.drawString(50,700,"test")
-    p.drawString(50,600,"to PDF")
-    p.showPage()
-    p.save()
+    pdfmetrics.registerFont(TTFont('THSarabunIT๙', 'THSarabunIT๙.ttf')) # ดึงไฟล์ THSarabunNew.ttf มาลงทะเบียนฟอนต์ในโค้ด
+    form = get_object_or_404(Form,user=request.user)
+    c = canvas.Canvas(buffer) # ไฟล์ที่จะเขียน
+    c.setFont("THSarabunIT๙", 14) # กำหนดฟอนต์ที่ใช้ และขนาดคือ 30
+    date = form.date.strftime(" %m/%d/%Y ")
+    c.setTitle("แบบฟอร์มขอหนังสือขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา")
+    c.drawString(180,780,"แบบฟอร์มขอหนังสือ ขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา") # กำหนดพิกัดที่เขียนและข้อความที่เขียน
+    c.drawString(190,750,"**** กรุณาเขียนตัวบรรจง เพื่อความถูกต้องในการพิมพ์หนังสือ ****")
+    c.drawString(400,710,"วันที่ " + date)
+    c.drawString(80,670,"ชื่อนักศึกษา   "+form.nameTitle+form.name+"    "+form.sername +"      เลขทะเบียน     "+form.studentID)
+    c.drawString(80,640,"เป็นนักศึกษา "+ form.major)
+    c.drawString(80,610,"ชื่อบริษัท (ที่จะไปฝึกงาน/สหกิจกษา) " + form.company)
+    c.drawString(80,580,"ที่อยู่บริษัท (ถ้ามี) " + form.addresscompany)
+    c.drawString(80,550,"หนังสือขอความอนุเคราะห์การฝึกงาน/สหกิจศึกษา เรียน (ตําแหน่ง)  " +form.destination)
+    c.drawString(80,520,"เบอร์โทรติดต่อนักศึกษา   " + form.phone + "   E-mail   "+ form.email)
+
+    c.showPage()
+    c.save() # บันทึกไฟล์
     buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename='แบบตอบรับนักศึกษาฝึกงานภาคฤดูร้อน.pdf')
+    return FileResponse(buffer ,as_attachment=True, filename='แบบฟอร์มขอหนังสือขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา.pdf')
+    
+    
+    # pattern = get_object_or_404(Form)
+    template_path = 'main/toPDF.html'
+    context = {'form' : "ANUDCHANA อนุชนา 6210612575 " ,}
+    #  'paatern' : pattern} 
+    response = HttpResponse(content_type='application/pdf')
+    response ['Content-Dinposition'] =  'fliename = "test.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    # pdf = render_to_pdf('main/toPDF.html',data)
+    # return HttpRequest(pdf , content_type='application/pdf')
+    pisa_status = pisa.CreatePDF(
+       html.encode("UTF-8"), dest=response )
+    if pisa_status.err:
+        return HttpResponse('We had some error <pre>'+html+'</pre>')
+    return response
+    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+
+class Step1Form(CreateView):
+    model = Form
+    form_class = Step1Forms
+    template_name = 'main/start.html'
+    success_url = reverse_lazy('main : news')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class Step2Form(CreateView):
+    pass
+    # model = Form
+    # form_class = Step1Forms
+    # template_name = 'main/start.html'
+    # success_url = reverse_lazy('main : news')
+
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     return super().form_valid(form)
+
+def Step2toPDF(request):
+    buffer = io.BytesIO()
+    pdfmetrics.registerFont(TTFont('THSarabunIT๙', 'THSarabunIT๙.ttf')) # ดึงไฟล์ THSarabunNew.ttf มาลงทะเบียนฟอนต์ในโค้ด
+    form = get_object_or_404(Form,user=request.user)
+    c = canvas.Canvas(buffer) # ไฟล์ที่จะเขียน
+    c.setFont("THSarabunIT๙", 14) # กำหนดฟอนต์ที่ใช้ และขนาดคือ 30
+    date = form.date.strftime(" %m/%d/%Y ")
+    c.setTitle("แบบฟอร์มขอหนังสือขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา")
+    c.drawString(180,780,"แบบฟอร์มขอหนังสือ ขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา") # กำหนดพิกัดที่เขียนและข้อความที่เขียน
+    c.drawString(190,750,"**** กรุณาเขียนตัวบรรจง เพื่อความถูกต้องในการพิมพ์หนังสือ ****")
+    c.drawString(400,710,"วันที่ " + date)
+    c.drawString(80,670,"ชื่อนักศึกษา   "+form.nameTitle+form.name+"    "+form.sername +"      เลขทะเบียน     "+form.studentID)
+    c.drawString(80,640,"เป็นนักศึกษา "+ form.major)
+    c.drawString(80,610,"ชื่อบริษัท (ที่จะไปฝึกงาน/สหกิจกษา) " + form.company)
+    c.drawString(80,580,"ที่อยู่บริษัท (ถ้ามี) " + form.addresscompany)
+    c.drawString(80,550,"หนังสือขอความอนุเคราะห์การฝึกงาน/สหกิจศึกษา เรียน (ตําแหน่ง)  " +form.destination)
+    c.drawString(80,520,"เบอร์โทรติดต่อนักศึกษา   " + form.phone + "   E-mail   "+ form.email)
+
+    c.showPage()
+    c.save() # บันทึกไฟล์
+    buffer.seek(0)
+    # ,as_attachment=True
+    return FileResponse(buffer , filename='แบบฟอร์มขอหนังสือขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา.pdf')

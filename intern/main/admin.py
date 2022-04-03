@@ -4,3 +4,5 @@ from .models import *
 
 admin.site.register(News)
 admin.site.register(Company)
+admin.site.register(Form)
+admin.site.register(PDFForm)

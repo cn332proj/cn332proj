@@ -1,5 +1,10 @@
+from ctypes import addressof
+import email
+from django.contrib.auth.models import User
+from wsgiref.headers import Headers
 from django.db import models
 from django.utils import timezone
+from matplotlib.pyplot import title
 
 # Create your models here.
 class News(models.Model):
@@ -22,29 +27,39 @@ class Company(models.Model):
         return self.Company
 
 
+class Form(models.Model):
+    class title(models.TextChoices):
+        miss = "นางสาว"
+        mrs = "นาง"
+        mr = "นาย"
 
-class Document(models.Model):
-    Document_ID = models.BigAutoField(auto_created=True, primary_key=True)
-    Document_student_id = models.CharField(max_length=20 ,null=True)
-    Document_file1_id = models.CharField(max_length=200 ,null=True)
-    Document_file2_id = models.CharField(max_length=200 ,null=True)
-    Document_file3_id = models.CharField(max_length=200 ,null=True)
-  
+    user=models.ForeignKey(User,default=None, on_delete=models.PROTECT)
+    nameTitle = models.CharField(max_length=100,
+        choices=title.choices,
+        default=None,
+        )
+    name = models.CharField(max_length=150, null = True,)
+    sername = models.CharField(max_length=150, null = True,)
+    studentID = models.CharField(max_length=10, null = True,)
+    date = models.DateTimeField(default=timezone.now)
+    major = models.CharField(max_length=150, null = True,)
+    company = models.CharField(max_length=150, null = True,)
+    addresscompany = models.CharField(max_length=150, null = True,)
+    destination = models.CharField(max_length=150, null = True,)
+    phone = models.CharField(max_length=10, null = True,)
+    email = models.CharField(max_length=150, null = True,)
 
+    def __str__(self):
+            return self.name
 
-class File1(models.Model):
-    File1_ID = models.BigAutoField(auto_created=True, primary_key=True)
-    File1_name = models.CharField(max_length=200 ,null=True)
-    File1_history_id = models.CharField(max_length=200 ,null=True)
-    File1_date = models.DateTimeField(default=timezone.now)
-  
-
-
-class History(models.Model):
-    History_ID = models.BigAutoField(auto_created=True, primary_key=True)
-    History_student_id = models.CharField(max_length=20 ,null=True)
-    History_file_id = models.CharField(max_length=200 ,null=True)
-    History_admin_id = models.CharField(max_length=200 ,null=True)
-    History_file_type = models.CharField(max_length=1 ,null=True)
-    History_date = models.DateTimeField(default=timezone.now)
-  
+class PDFForm (models.Model):
+    header = models.CharField(max_length=150, null = True,)
+    body = models.TextField(blank=True)
+    link = models.URLField(max_length=200,null = True,)
+    logo = models.FileField(blank=True,null=True)
+    signature = models.FileField(blank=True,null=True)
+    address = models.CharField(max_length=150, null = True,)
+    booknumber = models.CharField(max_length=50, null = True,)
+    
+    def __str__(self):
+                return self.header
