@@ -3,44 +3,107 @@
 
 
 {%block content%}    
-<div class="container ">
-<div class="btn-group  d-flex justify-content-center" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-primary btn-group-sm" checked>1</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <button type="button" class="btn btn-outline-primary btn-group-sm" disabled>2</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <button type="button" class="btn btn-outline-primary btn-group-sm" disabled>3</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <button type="button" class="btn btn-outline-primary btn-group-sm" disabled>4</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <button type="button" class="btn btn-outline-primary btn-group-sm" disabled>5</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<section class="step-wizard">
+  <ul class="step-wizard-list">
+    <li class="step-wizard-item current-item">
+      <span class="progress-count">1</span>
+      <span class="progress-label">Upload Form </span>
+    </li>
+    <li class="step-wizard-item">
+      <span class="progress-count">2</span>
+      <span class="progress-label">Upload Form </span>
+    </li>
+    <li class="step-wizard-item  ">
+      <span class="progress-count">3</span>
+      <span class="progress-label">Upload Form </span>
+    </li>
+    <li class="step-wizard-item">
+      <span class="progress-count">4</span>
+      <span class="progress-label">Upload Form </span>
+    </li>
+    <li class="step-wizard-item">
+      <span class="progress-count">5</span>
+      <span class="progress-label">Upload Form </span>
+    </li>
+
+  </ul>
+</section>
+  <br><br>
+  <br><br>
+  <div class="step">
+    <h4>Step 1 : อัพโหลดแบบฟอร์มหนังสือขอความอนุเคราะห์</h4>
+    <br><br>
+    <form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
+
+    {% csrf_token %}
+
+    <!-- <p>Personal information</p>
+      <input type="text" placeholder="Firstname" />
+      <input type="text" placeholder="Surname" />
+      <input type="text" placeholder="Birthdate" />
+      <input type="text" placeholder="Insurance number" />
+      <input type="text" placeholder="Family status" /> -->
+
+      <div class="tab">Name:
+        <p>{{ form.name }} {{ form.sername }}</p>
+      </div>
+
+      <div class="tab">Student ID :
+        <p>{{ form.studentID }}</p>
+      </div>
+
+      <div class="tab">Date :
+        <p>{{ form.date }}</p>
+      </div>
+
+      <div class="tab">Major :
+        <p>{{ form.major }}</p>
+      </div>
+
+      <div class="tab">Company :
+        <p>{{ form.company }}</p>
+      </div>
+
+      <div class="tab">Address Company :
+        <p>{{ form.addresscompany }}</p>
+      </div>
+
+      <div class="tab">Destination :
+        <p>{{ form.destination }}</p>
+      </div>
+
+      <div class="tab">Phone :
+        <p>{{ form.phone }}</p>
+      </div>
+
+      <div class="tab">Email :
+        <p>{{ form.email }}</p>
+      </div>
+
+    <!-- <p> name  {{ form.name }}</p>
+    <br>
+    <p> sername  {{ form.sername }}</p>
+    <br> -->
+    <!-- <p> studentID  {{ form.studentID }}</p>
+    <br>
+    <p> date  {{ form.date }}</p>
+    <br> -->
+    <!-- <p> major  {{ form.major }}</p>
+    <br>
+    <p> company  {{ form.company }}</p>
+    <br> -->
+    <!-- <p> addresscompany  {{ form.addresscompany }}</p>
+    <br> -->
+    <!-- <p> destination  {{ form.destination }}</p>
+    <br>
+    <p> phone  {{ form.phone }}</p>
+    <br>
+    <p> email  {{ form.email }}</p>
+    <br>
+    <br> -->
+    <button type="submit" class="start_submit">Submit</button></form>
+    <a href="{% url 'main:Step1'  %}" class="read-more">สร้างเอกสารคำร้อง</a><br><br><br>
 </div>
-<br><br>
-<h4>Step 1 : อัพโหลดแบบฟอร์มหนังสือขอความอนุเคราะห์</h4>
-<br><br>
-<form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
-
-{% csrf_token %}
-
-<p> name  {{ form.name }}</p>
-<br>
-<p> sername  {{ form.sername }}</p>
-<br>
-<p> studentID  {{ form.studentID }}</p>
-<br>
-<p> date  {{ form.date }}</p>
-<br>
-<p> major  {{ form.major }}</p>
-<br>
-<p> company  {{ form.company }}</p>
-<br>
-<p> addresscompany  {{ form.addresscompany }}</p>
-<br>
-<p> destination  {{ form.destination }}</p>
-<br>
-<p> phone  {{ form.phone }}</p>
-<br>
-<p> email  {{ form.email }}</p>
-<br>
-<br>
-<button type="submit">Add Recipe</button></form>
-<a href="{% url 'main:Step1'  %}" class="read-more">สร้างเอกสารคำร้อง</a><br><br><br>
 <!-- 
 <label for="formFileSm" class="form-label">upload file .pdf</label>
 <form class="row g-2" action="{%url 'main:step1_1'%}" method="post" enctype="multipart/form-data">

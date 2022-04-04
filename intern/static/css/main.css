@@ -128,6 +128,7 @@ nav .fa{
     background: #f44336;
     margin-top: 15px;
     margin-left: -15px;
+    z-index: 20;
   
 }
 .nav-links ul li:hover .sub-about ul {
@@ -209,7 +210,7 @@ nav .fa{
 }
 
 .containertable .content-table thead tr {
-  background-color: #ce1d2f;
+  background-color: #ce1d1d;
   color: #ffffff;
   text-align: left;
   /* text-overflow: clip; */

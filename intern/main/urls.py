@@ -14,7 +14,7 @@ urlpatterns = [
 
     #บริษัท
     path('CompanyList', views.company, name="company"),
-    path('start', Step1Form.as_view(), name="Step1Form"),
+    path('Step', Step1Form.as_view(), name="Step"),
     path('Step1', views.Step1toPDF, name="Step1"),
     path('Step2', views.Step2toPDF, name="Step2"),
 ]
