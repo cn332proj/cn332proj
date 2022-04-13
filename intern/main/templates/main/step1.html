@@ -2,7 +2,7 @@
 
 
 
-{%block content%}    
+{%block content%}
 <section class="step-wizard">
   <ul class="step-wizard-list">
     <li class="step-wizard-item current-item">
@@ -28,26 +28,26 @@
 
   </ul>
 </section>
-  <br><br>
-  <br><br>
-
-<div class="step">
-<h4>Step 1 : อัพโหลดแบบฟอร์มหนังสือขอความอนุเคราะห์</h4>
+<br><br>
 <br><br>
 
+<div class="step">
+  <h4>Step 1 : อัพโหลดแบบฟอร์มหนังสือขอความอนุเคราะห์</h4>
+  <br><br>
 
-<label for="formFileSm" class="form-label">upload file .pdf</label>
-<form class="row g-2" action="{%url 'main:step1_1'%}" method="post" enctype="multipart/form-data">
-   {% csrf_token %}
-  <div class="col-auto">
-    
-    <input class="form-control form-control-sm" name="file1" type="file">
-  </div>
-  <div class="col-auto">
-    
-    <button type="submit" class="btn btn-primary btn-sm ">submit</button>
-  </div>
-</form>
+
+  <label for="formFileSm" class="form-label">upload file .pdf</label>
+  <form class="row g-2" action="{%url 'main:step1_1'%}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-auto">
+
+      <input class="form-control form-control-sm" name="file1" type="file">
+    </div>
+    <div class="col-auto">
+
+      <button type="submit" class="btn btn-primary btn-sm ">submit</button>
+    </div>
+  </form>
 
 
 </div>

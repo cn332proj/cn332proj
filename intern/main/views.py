@@ -225,3 +225,23 @@ def Step2toPDF(request):
     buffer.seek(0)
     # ,as_attachment=True
     return FileResponse(buffer, filename='หนังสือขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา.pdf')
+
+
+def dowloadForm(request):
+    form = Dowload.objects.all()
+    return render(request, "main/dowloadForm.html", {"form": form})
+
+
+def form_content(request, number):
+    fs = FileSystemStorage()
+    file = (get_object_or_404(Dowload, pk=number)).pdf
+    filename = os.path.basename(file.name)
+
+    if fs.exists(filename):
+        with fs.open(filename) as pdf:
+            response = HttpResponse(pdf, content_type="application/pdf")
+            response['Content-Disposition'] = 'inline; filename = form.pdf'
+
+            return response
+    else:
+        return HttpResponseNotFound

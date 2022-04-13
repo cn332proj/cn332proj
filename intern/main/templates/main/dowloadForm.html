@@ -1,0 +1,9 @@
+{% extends "main/base_01.html" %}
+{%block content%}
+
+{% for form in form %}
+<title> {{form.header }}</title>
+<a href="{% url 'main:form_content' form.id %}" class="read-more">{{ form.header }}</a> <br>
+{% endfor %}
+
+{% endblock %}
