@@ -217,9 +217,12 @@ nav .fa{
   font-weight: bold;
 }
 
-.containertable .content-table th,
+.containertable .content-table th{
+  padding: 10px 0px 10px 0px;
+}
+
 .containertable .content-table td {
-  padding: 10px 50px 10px 50px;
+  padding: 10px 0px 10px 0px;
 }
 
 .containertable .content-table tbody tr {
