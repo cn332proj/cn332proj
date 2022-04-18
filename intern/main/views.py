@@ -6,6 +6,9 @@ from ast import Delete
 from email.mime import application
 import os
 import io
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.utils import ImageReader
 from unittest import result
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -49,10 +52,6 @@ def index(request):
         return HttpResponseRedirect(reverse("user:login"))
     else:
         return render(request, "main/index.html")
-
-
-def start(request):
-    return render(request, "main/start.html")
 
 
 def news(request):
@@ -179,30 +178,22 @@ class Step2Form(CreateView):
     # def form_valid(self, form):
     #     form.instance.user = self.request.user
     #     return super().form_valid(form)
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen.canvas import Canvas
-from reportlab.lib.utils import ImageReader
+
+
 def Step2toPDF(request):
     
     buffer = io.BytesIO() 
     
     form = get_object_or_404(Form, user=request.user)
-    c = canvas.Canvas(buffer)  # ไฟล์ที่จะเขียน
+    c = canvas.Canvas(buffer)  
     
     logo = ImageReader('logo.png')
     sig = ImageReader('image.png')
     date = form.date
     month_name = 'x มกราคม กุมภาพันธ์ มีนาคม เมษายน พฤษภาคม มิถุนายน กรกฎาคม สิงหาคม กันยายน ตุลาคม พฤศจิกายน ธันวาคม'.split()[date.month]
     thai_year = date.year + 543
-    
-    # ดึงไฟล์ THSarabunNew.ttf มาลงทะเบียนฟอนต์ในโค้ด
-    
-    
-    # c.setTitle("แบบฟอร์มขอหนังสือขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา")
-    # c.drawImage(0, 0, 400, 224)
     pdfmetrics.registerFont(TTFont('THSarabunIT๙', 'THSarabunIT๙.ttf'))
-    c.setFont("THSarabunIT๙", 14)  # กำหนดฟอนต์ที่ใช้ และขนาดคือ 30
-    # canvas = Canvas('output.pdf', pagesize=letter)
+    c.setFont("THSarabunIT๙", 14)  
     c.drawImage(logo,260,730, mask='auto',width=80 ,height=80)
     c.drawImage(sig,295,235, mask='auto',width=130 ,height=40)
     c.drawString(80, 740, "ที่ อว ๖๗.๓๐/(วฟ-๖๕-๗๐ )")
@@ -251,3 +242,8 @@ class Step2Form(CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+def step2Admin(request):
+    dd = Form.objects.all()
+    context = {"dd": dd}
+    return render(request, "main/step2.html",context)
