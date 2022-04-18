@@ -1,24 +1,22 @@
 from django.urls import path
 from . import views
 from .views import *
-app_name = "main"
+app_name="main"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("start/", views.start, name="start"),
-    path("step1_1/", views.step1_1, name="step1_1"),
+    path("start/", views.start, name="start"),     
+    path("step1_1/", views.step1_1, name="step1_1"), 
 
-    # ข่าว
+    #ข่าว
     path('news', views.news, name="news"),
     path('news/<int:number>', views.news_content, name="news_content"),
 
-    # บริษัท
+    
     path('CompanyList', views.company, name="company"),
-    path('Step', Step1Form.as_view(), name="Step"),
-    path('Step1', views.Step1toPDF, name="Step1"),
-    path('Step2', views.Step2toPDF, name="Step2"),
-
-    # dowload form
-    path('form', views.dowloadForm, name="dowloadform"),
-    path('form/<int:number>', views.form_content, name="form_content"),
+    path('Step1', Step1Form.as_view(), name="Step1"),
+    path('Step2', Step2Form.as_view(), name="Step2"),
+    path('Step1toPDF', views.Step1toPDF, name="Step1toPDF"),
+    path('Step2toPDF', views.Step2toPDF, name="Step2toPDF"),
 ]
+   

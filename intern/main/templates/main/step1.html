@@ -2,7 +2,7 @@
 
 
 
-{%block content%}
+{%block content%}    
 <section class="step-wizard">
   <ul class="step-wizard-list">
     <li class="step-wizard-item current-item">
@@ -28,28 +28,20 @@
 
   </ul>
 </section>
-<br><br>
-<br><br>
-
-<div class="step">
-  <h4>Step 1 : อัพโหลดแบบฟอร์มหนังสือขอความอนุเคราะห์</h4>
   <br><br>
+  <br><br>
+  <div class="step">
+    <h4>Step 1 : อัพโหลดแบบฟอร์มหนังสือขอความอนุเคราะห์</h4>
+    <br><br>
+    <form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
 
-
-  <label for="formFileSm" class="form-label">upload file .pdf</label>
-  <form class="row g-2" action="{%url 'main:step1_1'%}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="col-auto">
-
-      <input class="form-control form-control-sm" name="file1" type="file">
-    </div>
-    <div class="col-auto">
-
-      <button type="submit" class="btn btn-primary btn-sm ">submit</button>
-    </div>
-  </form>
-
-
+    {{ form.as_p}}
+      
+    
+    <button type="submit" class="start_submit">Submit</button></form>
+    <!-- <a href="{% url 'main:Step1'  %}" class="read-more">สร้างเอกสารคำร้อง</a><br><br><br> -->
 </div>
+
 
 {%endblock%}

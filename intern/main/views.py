@@ -1,3 +1,5 @@
+from sys import intern
+from flask_login import logout_user
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 from ast import Delete
@@ -159,13 +161,13 @@ def Step1toPDF(request):
 class Step1Form(CreateView):
     model = Form
     form_class = Step1Forms
-    template_name = 'main/start.html'
-    success_url = reverse_lazy('main : news')
+    template_name = 'main/step1.html'
+    success_url = reverse_lazy('main:Step1toPDF')
 
     def form_valid(self, form):
+        form.cleaned_data
         form.instance.user = self.request.user
         return super().form_valid(form)
-
 
 class Step2Form(CreateView):
     pass
@@ -177,22 +179,37 @@ class Step2Form(CreateView):
     # def form_valid(self, form):
     #     form.instance.user = self.request.user
     #     return super().form_valid(form)
-
-
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.utils import ImageReader
 def Step2toPDF(request):
-    buffer = io.BytesIO()
-    # ดึงไฟล์ THSarabunNew.ttf มาลงทะเบียนฟอนต์ในโค้ด
-    pdfmetrics.registerFont(TTFont('THSarabunIT๙', 'THSarabunIT๙.ttf'))
+    
+    buffer = io.BytesIO() 
+    
     form = get_object_or_404(Form, user=request.user)
     c = canvas.Canvas(buffer)  # ไฟล์ที่จะเขียน
-    c.setFont("THSarabunIT๙", 14)  # กำหนดฟอนต์ที่ใช้ และขนาดคือ 30
-    date = form.date.strftime(" %m/%d/%Y ")
+    
+    logo = ImageReader('logo.png')
+    sig = ImageReader('image.png')
+    date = form.date
+    month_name = 'x มกราคม กุมภาพันธ์ มีนาคม เมษายน พฤษภาคม มิถุนายน กรกฎาคม สิงหาคม กันยายน ตุลาคม พฤศจิกายน ธันวาคม'.split()[date.month]
+    thai_year = date.year + 543
+    
+    # ดึงไฟล์ THSarabunNew.ttf มาลงทะเบียนฟอนต์ในโค้ด
+    
+    
     # c.setTitle("แบบฟอร์มขอหนังสือขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา")
+    # c.drawImage(0, 0, 400, 224)
+    pdfmetrics.registerFont(TTFont('THSarabunIT๙', 'THSarabunIT๙.ttf'))
+    c.setFont("THSarabunIT๙", 14)  # กำหนดฟอนต์ที่ใช้ และขนาดคือ 30
+    # canvas = Canvas('output.pdf', pagesize=letter)
+    c.drawImage(logo,260,730, mask='auto',width=80 ,height=80)
+    c.drawImage(sig,295,235, mask='auto',width=130 ,height=40)
     c.drawString(80, 740, "ที่ อว ๖๗.๓๐/(วฟ-๖๕-๗๐ )")
     c.drawString(400, 740, "คณะวิศวกรรมศาสตร์")
     c.drawString(400, 720, "มหาวิทยาลัยธรรมศาสตร์ ศูนย์รังสิต")
     c.drawString(400, 700, "อ. คลองหลวง จ. ปทุมธานี ๑๒๑๒๐")
-    c.drawString(320, 660, date)
+    c.drawString(320, 660, "%d %s %d "%(date.day, month_name, thai_year))
     c.drawString(80, 620, "เรื่อง ขอความอนุเคราะห์นักศึกษาฝึกงานภาคฤดูร้อน")
     c.drawString(80, 590, "เรียน " + form.destination)
     c.drawString(80, 560, "สิ่งที่ส่งมาด้วย แบบตอบรับนักศึกษาฝึกงานภาคฤดูร้อน")
@@ -204,7 +221,7 @@ def Step2toPDF(request):
         80, 490, "ประสบการณ์และความรอบรู้จากการทำงานจริง ตลอดจนรู้จักใช้ความรู้จากการศึกษามาประยุกต์เข้ากับการทำงาน")
     c.drawString(
         150, 460, "ในการนี้ ภาควิชาฯจึงขอความอนุเคราะห์ให้นักศึกษาดังรายชื่อต่อไปนี้")
-    c.drawString(120, 440, "๑." + form.nameTitle + form.name + "   " +
+    c.drawString(120, 440, form.nameTitle + form.name + "   " +
                  form.sername + "   เลขทะเบียน   " + form.studentID + "   " + form.major)
     c.drawString(
         80, 410, "ได้มีโอกาสเข้าฝึกงานในหน่วยงานของท่าน ช่วงปิดภาคฤดูร้อน ระหว่างวันที่ ๖ มิถุนายน ถึงวันที่ ๓๑ กรกฎาคม ๒๕๖๕")
@@ -226,22 +243,11 @@ def Step2toPDF(request):
     # ,as_attachment=True
     return FileResponse(buffer, filename='หนังสือขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา.pdf')
 
+class Step2Form(CreateView):
+    model = PDFForm
+    form_class = Step2Forms
+    template_name = 'main/step2.html'
+    success_url = reverse_lazy('main:Step2toPDF')
 
-def dowloadForm(request):
-    form = Dowload.objects.all()
-    return render(request, "main/dowloadForm.html", {"form": form})
-
-
-def form_content(request, number):
-    fs = FileSystemStorage()
-    file = (get_object_or_404(Dowload, pk=number)).pdf
-    filename = os.path.basename(file.name)
-
-    if fs.exists(filename):
-        with fs.open(filename) as pdf:
-            response = HttpResponse(pdf, content_type="application/pdf")
-            response['Content-Disposition'] = 'inline; filename = form.pdf'
-
-            return response
-    else:
-        return HttpResponseNotFound
+    def form_valid(self, form):
+        return super().form_valid(form)

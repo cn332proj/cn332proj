@@ -1,0 +1,9 @@
+{%block content%}  
+<form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
+
+{% csrf_token %}
+  {{ form.booknumber }}
+<button type="submit" class="start_submit">Submit</button></form>
+    
+
+{%endblock%}
