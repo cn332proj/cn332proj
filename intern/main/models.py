@@ -6,6 +6,9 @@ from django.db import models
 from django.utils import timezone
 from matplotlib.pyplot import title
 
+from .utils import upload_to
+from .validators import validate_file_extension
+
 # Create your models here.
 class News(models.Model):
     header = models.CharField(max_length=150, null = True,)
@@ -57,3 +60,26 @@ class PDFForm (models.Model):
     
     def __str__(self):
                 return self.booknumber
+            
+class Documentstep3 (models.Model):
+    filename = models.CharField(max_length=100)
+    attachment = models.FileField(upload_to=upload_to,validators=[validate_file_extension],null=True)
+    
+    def __str__(self):
+        return self.filename
+    
+    def delete(self, *args, **kwargs):
+        self.attachment.delete()
+        super().delete(*args, **kwargs)
+        
+class Documentstep5 (models.Model):
+    filename = models.CharField(max_length=100)
+    attachment = models.FileField(upload_to=upload_to,validators=[validate_file_extension],null=True)
+    
+    def __str__(self):
+        return self.filename
+    
+    def delete(self, *args, **kwargs):
+        self.attachment.delete()
+        super().delete(*args, **kwargs)
+        

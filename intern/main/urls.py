@@ -18,5 +18,9 @@ urlpatterns = [
     path('Step2', Step2Form.as_view(), name="Step2"),
     path('Step1toPDF', views.Step1toPDF, name="Step1toPDF"),
     path('Step2toPDF', views.Step2toPDF, name="Step2toPDF"),
+    
+    path('Step3', views.step3, name="Step3"),
+    path('Step4', views.step4, name="Step4"),
+    path('Step5', views.step5, name="Step5"),
 ]
    

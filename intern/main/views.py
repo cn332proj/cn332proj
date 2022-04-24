@@ -32,11 +32,14 @@ from io import *
 from django.forms.widgets import NullBooleanSelect
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,Http404
 from django.urls import reverse
 from django.views.generic.edit import CreateView
 from .forms import *
 from django.urls import reverse_lazy
+
+from django.shortcuts import render,redirect
+
 from . import views
 # Create your views here.
 
@@ -247,3 +250,48 @@ def step2Admin(request):
     dd = Form.objects.all()
     context = {"dd": dd}
     return render(request, "main/step2.html",context)
+
+def step3 (request):
+    files = Documentstep3.objects.all()
+    if request.method == 'POST':
+        form = Step3Forms(request.POST, request.FILES)
+        filename = form['filename'].value()
+        
+        if form.is_valid():
+            form.save()
+			# eachsubject(request, form['subjectid'].value())
+            return redirect('Step3')
+        else:
+            print(form.errors)
+    else:
+        form = Step3Forms()
+        return render(request, 'main/step3.html', {
+        'form': form,
+        'files' : files
+    })
+
+    return render(request, "main/step3.html")
+
+def step4 (request):
+    return render(request, "main/step4.html")
+
+def step5 (request):
+    files = Documentstep5.objects.all()
+    if request.method == 'POST':
+        form = Step3Forms(request.POST, request.FILES)
+        filename = form['filename'].value()
+        
+        if form.is_valid():
+            form.save()
+			# eachsubject(request, form['subjectid'].value())
+            return redirect('Step5')
+        else:
+            print(form.errors)
+    else:
+        form = Step3Forms()
+        return render(request, 'main/step5.html', {
+        'form': form,
+        'files' : files
+    })
+
+    return render(request, "main/step3.html")

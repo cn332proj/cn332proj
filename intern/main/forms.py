@@ -24,3 +24,24 @@ class Step2Forms(forms.ModelForm):
         model = PDFForm
         fields = ('booknumber',) 
         widgets = {'booknumber':forms.TextInput}
+        
+class Step3Forms(forms.ModelForm):
+    class Meta:
+        model = Documentstep3
+        fields = ('filename','attachment')
+        
+    def __init__(self, *args, **kwargs):
+        super(Step3Forms, self).__init__(*args, **kwargs)
+        
+        self.fields['filename'].widget.attrs.update(style='max-width: 50em')
+        
+class Step5Forms(forms.ModelForm):
+    class Meta:
+        model = Documentstep5
+        fields = ('filename','attachment')
+        
+    def __init__(self, *args, **kwargs):
+        super(Step3Forms, self).__init__(*args, **kwargs)
+        
+        self.fields['filename'].widget.attrs.update(style='max-width: 50em')
+        
