@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+
 .step-wizard {
     display: flex;
     justify-content: center;
@@ -125,10 +127,10 @@
     min-width: 300px;
     position: absolute;
     border-radius: 10px;
-    background: #f8f4e5;
+    background: #ffffff;
     /* padding: 50px 100px; */
-    border: 2px solid rgba(0,0,0,1);
-    box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px rgba(0,0,0,1);
+    /* border: 2px solid rgba(0,0,0,1);
+    box-shadow: 15px 15px 1px #f44336, 15px 15px 1px 2px rgba(0,0,0,1); */
 }
 
 .start_submit {
@@ -143,18 +145,19 @@
     display: block;
     margin: 50px auto;
     line-height: 14pt * 2;
-    padding: 0 20px;
-    background: #ffa580;
+    padding: 5px 20px;
+    background: #ffffff;
     letter-spacing: 2px;
     transition: .2s all ease-in-out;
     outline: none;
-    border: 1px solid rgba(0,0,0,1);
-    box-shadow: 3px 3px 1px #ffc8ff, 3px 3px 1px 1px rgba(0,0,0,1);
+    text-decoration: none;
+    /* border: 1px solid rgba(0,0,0,1);
+    box-shadow: 3px 3px 1px #f44336, 3px 3px 1px 1px rgba(0,0,0,1); */
 
 }
 
 .start_submit:hover {
-    background: rgba(0,0,0,1);
+    background: #f44336;
     color: white;
     border: 1px solid rgba(0,0,0,1);
 }
@@ -177,4 +180,32 @@
 
 .tab {
     padding-left: 66px;
+}
+
+h4 {
+    padding-top: 25px;
+    font-family: 'Sarabun', sans-serif;
+}
+
+/* .set {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+} */
+
+.input{
+    /* border: 1px solid rgba(0,0,0,.1); */
+    border-radius: 4px;
+    /* height: 30px;
+    line-height: 38px; */
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+.center {
+    margin-left: 150px;
+}
+
+label {
+    font-family: 'Sarabun', sans-serif;
 }

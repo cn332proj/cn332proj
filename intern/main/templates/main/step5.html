@@ -37,7 +37,18 @@
     <form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
 
       {% csrf_token %}
-      {{ form.as_p}}
+      <!-- {{ form.as_p}} -->
+      <div class="center">
+        <section class="filename">
+          <label class="name-title">Filename :</label>
+            <section class="input">{{ form.filename}}</section>
+      </section>
+  
+      <section class="sec-name">
+        <label class="name">Attachment :</label>
+        <section class="input">{{ form.attachment}}</section>
+      </section>
+      </div>
         
       
       <button type="submit" class="start_submit">Submit</button></form>

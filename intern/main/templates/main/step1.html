@@ -35,10 +35,83 @@
     <br><br>
     <form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
 
-    {% csrf_token %}
-    {{ form.as_p}}
-      
+      {% csrf_token %}
+<div class="center">
+    <div class="set">
+    <section class="sec-nametitle">
+        <label class="name-title">คำนำหน้า:</label>
+          <section class="input">{{ form.nameTitle}}</section>
+    </section>
+
+    <section class="sec-name">
+      <label class="name">ชื่อ :</label>
+      <section class="input">{{ form.name}}</section>
+    </section>
     
+    <section class="sec-surname">
+      <label class="surname">นามสกุล :</label>
+      <section class="input">{{ form.sername}}</section>
+    </section>
+    </div>
+
+    <div class="set">
+    <section class="sec-id">
+      <label class="id">รหัสนักศึกษา :</label>
+      <section class="input">{{ form.studentID}}</section>
+    </section>
+
+    <section class="sec-date">
+      <label class="date">เดือน/วัน/ปี :</label>
+        <section class="input">{{ form.date}}</section>
+        
+    </section>
+    </div>
+    <div class="set">
+    <section class="sec-major">
+      <label class="major">คณะ :</label>
+        <section class="input">{{ form.major}}</section>
+        
+    </section>
+    
+
+    
+    <section class="sec-company">
+      <label class="company">ชื่อบริษัท :</label>
+        <section class="input">{{ form.company}}</section>
+        
+    </section>
+    </div>
+
+    <div class="set">
+    <section class="sec-address">
+      <label class="address">ที่อยู่ :</label>
+      <section class="input"> {{ form.addresscompany}}</section>
+       
+    </section>
+    
+
+    <section class="sec-destination">
+      <label class="destination">ตำแหน่ง :</label>
+      <section class="input">{{ form.destination}}</section>
+
+        
+    </section>
+    </div>
+
+    <div class="set">
+    <section class="sec-phone">
+      <label class="phone">เบอร์โทร :</label>
+      <section class="input">{{ form.phone}}</section>
+        
+    </section>
+
+    <section class="sec-email">
+      <label class="email">Email :</label>
+      <section class="input">{{ form.email}}</section>
+        
+    </section>
+    </div>
+ </div>
     <button type="submit" class="start_submit">Submit</button></form>
     <!-- <a href="{% url 'main:Step1'  %}" class="read-more">สร้างเอกสารคำร้อง</a><br><br><br> -->
 </div>
