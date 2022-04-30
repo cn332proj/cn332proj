@@ -1,8 +1,11 @@
+import re
 from sys import intern
+from turtle import up
 from flask_login import logout_user
+from platformdirs import user_documents_dir
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
-from ast import Delete
+from ast import Delete, For
 from email.mime import application
 import os
 import io
@@ -17,6 +20,7 @@ from django.contrib import messages
 from matplotlib import dates
 # from matplotlib.style import context
 from numpy import full
+
 from .models import *
 from django.template.loader import *
 from django.db.models import Sum
@@ -84,29 +88,6 @@ def news_content(request, number):
         return HttpResponseNotFound
 
 
-def step1_1(request):
-    file_path = "temp/"
-    if request.method == 'POST' and request.FILES['file1']:
-        file1 = request.FILES['file1']
-        fs = FileSystemStorage()
-        name = "test_" + request.user.username + ".pdf"
-
-        if os.path.isfile("file/" + file_path + name):
-            os.remove("file/" + file_path + name)
-
-        filename = fs.save(file_path + name, file1)
-        uploaded_file_url = fs.url(filename)
-        #_name = name
-
-        copyfile("file/" + file_path + name, "static/file/test/" + name)
-        os.remove("file/" + file_path + name)
-    return render(request, "main/success.html")
-
-
-data = {
-    "company": "ptt"
-}
-
 
 # from django.template.loader import *
 
@@ -164,11 +145,11 @@ class Step1Form(CreateView):
     model = Form
     form_class = Step1Forms
     template_name = 'main/step1.html'
-    success_url = reverse_lazy('main:Step1toPDF')
-
+    success_url = reverse_lazy('main:Step2')
+    
     def form_valid(self, form):
-        form.cleaned_data
         form.instance.user = self.request.user
+        form.instance.booknumber = None
         return super().form_valid(form)
 
 class Step2Form(CreateView):
@@ -176,7 +157,7 @@ class Step2Form(CreateView):
     # model = Form
     # form_class = Step1Forms
     # template_name = 'main/start.html'
-    # success_url = reverse_lazy('main : news')
+    # 
 
     # def form_valid(self, form):
     #     form.instance.user = self.request.user
@@ -199,7 +180,7 @@ def Step2toPDF(request):
     c.setFont("THSarabunIT๙", 14)  
     c.drawImage(logo,260,730, mask='auto',width=80 ,height=80)
     c.drawImage(sig,295,235, mask='auto',width=130 ,height=40)
-    c.drawString(80, 740, "ที่ อว ๖๗.๓๐/(วฟ-๖๕-๗๐ )")
+    c.drawString(80, 740, "ที่ "+form.booknumber)
     c.drawString(400, 740, "คณะวิศวกรรมศาสตร์")
     c.drawString(400, 720, "มหาวิทยาลัยธรรมศาสตร์ ศูนย์รังสิต")
     c.drawString(400, 700, "อ. คลองหลวง จ. ปทุมธานี ๑๒๑๒๐")
@@ -237,19 +218,38 @@ def Step2toPDF(request):
     # ,as_attachment=True
     return FileResponse(buffer, filename='หนังสือขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา.pdf')
 
-class Step2Form(CreateView):
-    model = PDFForm
-    form_class = Step2Forms
-    template_name = 'main/step2.html'
-    success_url = reverse_lazy('main:Step2toPDF')
+# class Step2Form(CreateView):
+#     model = Form
+#     form_class = Step2Forms
+#     template_name = 'main/step2_Admin.html'
+#     success_url = reverse_lazy('main:Step2')
 
-    def form_valid(self, form):
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         return super().form_valid(form)
+from .forms import Step2Forms
 
-def step2Admin(request):
-    dd = Form.objects.all()
-    context = {"dd": dd}
-    return render(request, "main/step2.html",context)
+def step2A(request,pk):
+    Book = Form.objects.get(id=pk)
+    context = {'Book':Book} 
+    if 'Book' not in request.POST:
+        return render(request,'main/step2_Admin.html',context)
+        # return render(request, "main/step2_Admin.html")
+    else:
+        booknumber = request.POST.get('Book',None)
+        Book.booknumber = booknumber
+        Book.save()
+        return redirect('/main/Step2')
+        # return render(request, "main:index")
+    
+
+def step2U(request):
+    user = request.user.is_superuser
+    if not user:
+        form = Form.objects.get(user_id=request.user)
+    else:
+        form = Form.objects.all()
+    context = {"form": form,}
+    return render(request, "main/step2.html", context)
 
 def step3 (request):
     files = Documentstep3.objects.all()

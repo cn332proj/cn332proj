@@ -1,13 +1,26 @@
 {%block content%}  
 <form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
 
-{% csrf_token %}
-  {{ form.booknumber }}
-<button type="submit" class="start_submit">Submit</button></form>
-   
-<!-- {% for d in dd %}
-    <title> {{d }}</title>
-    {{ d }}
-{% endfor %} -->
-
+{%if user.username == "admin" %}
+รายชื่อนักศึกษาที่รอหนังสือตอบกลับ <br>
+  {% for student in form %}
+    {%if student.booknumber is None %}
+    <a href="{% url 'main:Step2A' student.id %}" class="read-more">{{student}} </a><br>
+    {% endif %}
+  {% endfor %}
+  รายชื่อนักศึกษาที่ได้รับการตอบกลับแล้ว <br>
+  {% for list in form %}
+    {%if list.booknumber is not None %}
+      {{list.name}} {{list.sername}} {{list.booknumber}}<br>
+    {% endif %}
+  {% endfor %}
+{% else %}
+  {% if form.booknumber is none %}
+  ใส่สเตป2 ขึ้นว่ารอแอดมินดำเนินการ>>
+ 
+  {% else %}
+      <a href="{% url 'main:Step2toPDF'  %}" class="read-more">สร้างเอกสารคำร้อง</a><br><br><br>
+      ให้นักศึกษาดาวโหลดไฟล์แล้วนำส่งบริษัท
+  {% endif %}
+{% endif %}
 {%endblock%}

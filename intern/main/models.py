@@ -32,9 +32,9 @@ class Company(models.Model):
 
 class Form(models.Model):
     class title(models.TextChoices):
-        miss = "นางสาว"
-        mrs = "นาง"
-        mr = "นาย"
+        นางสาว = "นางสาว"
+        นาง = "นาง"
+        นาย = "นาย"
 
     user=models.ForeignKey(User,default=None, on_delete=models.PROTECT)
     nameTitle = models.CharField(max_length=100,
@@ -51,15 +51,11 @@ class Form(models.Model):
     destination = models.CharField(max_length=150, null = True,)
     phone = models.CharField(max_length=10, null = True,)
     email = models.CharField(max_length=150, null = True,)
+    booknumber = models.CharField(max_length=50, null = True,default=0)
 
     def __str__(self):
             return self.name
 
-class PDFForm (models.Model):
-    booknumber = models.CharField(max_length=50, null = True,)
-    
-    def __str__(self):
-                return self.booknumber
             
 class Documentstep3 (models.Model):
     filename = models.CharField(max_length=100)

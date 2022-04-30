@@ -16,12 +16,12 @@ class Step1Forms(forms.ModelForm):
         fields = ('nameTitle','name','sername','studentID','date','major','company','addresscompany','destination','phone','email') 
         widgets = {'name': forms.TextInput,
         'sername': forms.TextInput,'studentID':forms.TextInput,'date': forms.SelectDateWidget,'major':forms.TextInput,'company':forms.TextInput,'addresscompany':forms.TextInput,
-        'destination':forms.TextInput,'phone':forms.TextInput,'email':forms.TextInput}
+        'destination':forms.TextInput,'phone':forms.TextInput,'email':forms.TextInput,}
 
 class Step2Forms(forms.ModelForm):
 
     class Meta:
-        model = PDFForm
+        model = Form
         fields = ('booknumber',) 
         widgets = {'booknumber':forms.TextInput}
         
