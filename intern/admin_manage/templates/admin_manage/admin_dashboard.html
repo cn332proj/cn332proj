@@ -1,15 +1,4 @@
-
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="with=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="{%static 'css/base_main.css' %}">
-  <!-- <title>{% block title %}Django Auth Tutorial{% endblock %}</title> -->
-</head>
-
+{% extends "admin_manage/base_01.html" %}
 
 {% block content %}
 
@@ -20,14 +9,20 @@
 <meta http-equiv="refresh" content="4">
  {%endfor%} 
 
+<br><br>
+<center><h2>Admin Dashboard</h2>
+<br><br>
 
-<br><br>
-<center><h2> Admin Dashboard</h2></center>
-<br><br>
-<h3> &nbsp;&nbsp;&nbsp; <a href="{% url 'admin_manage:add_student' %}">add new student</a> </h3><br>
-<h3> &nbsp;&nbsp;&nbsp; <a href="{% url 'admin_manage:add_student' %}">ดูแบบฟอร์มขอความอนุเคราะห์</a> </h3><br>
+  <div class="card"> &nbsp;&nbsp;&nbsp; 
+      <a style="text-decoration: none;" href="{% url 'admin_manage:add_student' %}">ลงทะเบียนนักศึกษาใหม่</a>
+  </div>
+  
+  <div class="card"> &nbsp;&nbsp;&nbsp; 
+    <a style="text-decoration: none;" href="{% url 'admin_manage:add_student' %}">ดูแบบฟอร์มขอความอนุเคราะห์</a>
+  </div><br>
+
 
 <br><br><br>
-<h3> &nbsp;&nbsp;&nbsp; <a href="{% url 'user:logout' %}">logout</a> </h3><br>
-
+<!-- <h3> &nbsp;&nbsp;&nbsp; <a href="{% url 'user:logout' %}">logout</a> </h3><br> -->
+</center>
 {% endblock %}
