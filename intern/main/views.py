@@ -260,7 +260,7 @@ def step3 (request):
         if form.is_valid():
             form.save()
 			# eachsubject(request, form['subjectid'].value())
-            return redirect('Step3')
+            return redirect('main:Step4')
         else:
             print(form.errors)
     else:
@@ -270,7 +270,7 @@ def step3 (request):
         'files' : files
     })
 
-    return render(request, "main/step3.html")
+    return redirect('main:Step4')
 
 def step4 (request):
     return render(request, "main/step4.html")
@@ -294,4 +294,4 @@ def step5 (request):
         'files' : files
     })
 
-    return render(request, "main/step3.html")
+    return redirect('main:index')
