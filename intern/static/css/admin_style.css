@@ -246,9 +246,10 @@ nav .fa{
 .containertable {
   position: relative;
   width: 100%;
-  padding: 30px;
+  padding-top: 10px;
+  padding-left: 10%;
   display: flex;
-  justify-content: center;
+  justify-content: top;
   align-items: center;
   text-align: center;
   flex-direction: column;
@@ -257,9 +258,10 @@ nav .fa{
 
 .containertable .content-table {
   border-collapse: collapse;
-  margin: 30px 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 14px;
-  min-width: 400px;
+  width: 90%;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);

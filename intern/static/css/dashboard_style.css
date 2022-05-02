@@ -70,3 +70,169 @@
 .body .menu_box .card:hover {
     transform: scale(1.1);
 }
+
+.body .box_add_student {
+    /* height: 12vh; */
+    height: 13vh;
+}
+
+.body .content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.body .content .add_student_card {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    width: 80vw;
+    background-color: #464646;
+    /* background-color: white; */
+    padding-top: 7vh;
+    padding-bottom: 7vh;
+    /* padding-left: 7vw;
+    padding-right: 7vw; */
+    border-radius: 20px;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+    max-height: 78vh;
+    position: relative;
+}
+
+.body .content .add_student_card2 {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    width: 80vw;
+    background-color: #464646;
+    /* background-color: white; */
+    padding-top: 4vh;
+    padding-bottom: 3vh;
+    /* padding-left: 7vw;
+    padding-right: 7vw; */
+    border-radius: 10px;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+    max-height: 78vh;
+    position: relative;
+
+    overflow-y: scroll;
+}
+
+.body .content .add_student_card h4{
+    width: 95%;
+    /* color: #464646; */
+    color: white;
+    padding-left: 3vw;
+    padding-bottom: 2vh;
+    border-bottom: 5px solid #c00832;
+}
+
+.body .content .add_student_card2 h4{
+    width: 95%;
+    /* color: #464646; */
+    color: white;
+    padding-left: 3vw;
+    padding-bottom: 2vh;
+    border-bottom: 5px solid #c00832;
+}
+
+.body .content .add_student_card .content {
+    display: block;
+    flex-direction: column;
+    margin: 1rem;
+    margin-top: 0px;
+    /* background-color: #c00832; */
+}
+
+.body .content .add_student_card .content label {
+    margin: 5px;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.body .content .add_student_card .content input {
+    border-radius: 20px;
+    border: 2px solid white;
+    background-color: #464646;
+    color: white;
+}
+
+.body .content .add_student_card .content input:focus {
+    box-shadow: none;
+    border: 2px solid #c00832;
+}
+
+.body .content .add_student_card .content button {
+    background-color: #c00832;
+    border: #c00832;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    border-radius: 20px;
+    transition: 50ms;
+}
+
+.body .content .add_student_card .content button:hover {
+    background-color: #b80d35;
+    border: #b80d35;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    border-radius: 20px;
+}
+
+.body .content .add_student_card i{
+    position: absolute;
+    bottom: -15px;
+    right: -40px;
+    width: 7vw;
+    height: 35px;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.body .content .add_student_card h1 {
+    color: white;
+    margin-bottom: 3vh;
+    width: 90%;
+
+}
+
+.body .content .add_student_card2 h1 {
+    color: white;
+    margin-bottom: 3vh;
+    width: 90%;
+
+}
+
+.body .content .add_student_card form {
+    color: white;
+    width: 70%;
+}
+
+.body .content .add_student_card .h4-admin {
+    width: 90%;
+}
+
+.body .content .add_student_card2 .h4-admin {
+    width: 90%;
+}
+
+.body .content .add_student_card .containertable {
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}

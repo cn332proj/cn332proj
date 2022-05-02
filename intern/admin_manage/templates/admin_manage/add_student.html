@@ -1,7 +1,11 @@
 {% extends "admin_manage/base_01.html" %}
-
+{% load static %}
 {% block content %}
 
+<div class="box_add_student"></div>
+
+<div class="content">
+<div class="add_student_card">
 {% for i in messages%}
  <div class="alert alert-success" role="alert">   
   <br>
@@ -10,9 +14,8 @@
  {%endfor%} 
 
 
-<div class="step">
   <h4>ลงทะเบียนนักศึกษาใหม่</h4>
-    <form style="margin: 0px 20px 8px 20px;"action="{% url 'admin_manage:add_student2' %}"  method="post" enctype="multipart/form-data">
+    <form action="{% url 'admin_manage:add_student2' %}"  method="post" enctype="multipart/form-data">
       {% csrf_token %}
   <br><br>
 
@@ -21,18 +24,20 @@
 
       <div class="form-group">
         <label for="exampleInputEmail1">student id column : </label>
-          <input type="text" class="form-control" name="column">
+        <input type="text" class="form-control" name="column">
       </div>
 
       <div class="mb-3">
         <label for="formFile" class="form-label">sheet </label>
         <input class="form-control" type="file" name="sheet">
       </div>
-
+      <br>
       <button type="submit" class="btn btn-primary mb-2">Add</button>           
         </form>
+
+      <i><img src="{% static 'css/images/paper_plane.svg' %}"></i>
     </div>
-  </div>
 </div>
+
 
 {% endblock %}

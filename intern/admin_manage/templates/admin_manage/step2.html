@@ -1,50 +1,78 @@
 {% extends "admin_manage/base_01.html" %}
 
+{% load static %}
 
 {%block content%}  
-<form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
+<div class="box_add_student"></div>
+
+<div class="content">
+  <div class="add_student_card2">
 
 <h1 class="heading">รายชื่อ<span>นักศึกษา</span></h1>
-  <div class="step2-admin">
     {%if user.username == "admin" %}
 
       <h4 class="h4-admin">รายชื่อนักศึกษาที่รอหนังสือตอบกลับ</h4>
-    <br>
-      {% for student in form %}
-    
-        {%if student.booknumber is None %}
-      
-        <a href="{% url 'main:Step2A' student.id %}" class="name-l">
-          <li>
-            {{student}} 
-          </li>
-        </a>
-      
-        {% endif %}
-    
-      {% endfor %}
+    <!-- <br> -->
+    <div class="containertable">
+      <div class="table">
+          <table class="content-table">
+              <thead>
+                  <tr>
+                      <th>ชื่อ-นามสกุล</th>
+                  </tr>
+              </thead>
+
+              <tbody>
+                  
+                {% for student in form %}
+                {%if student.booknumber is None %}
+                  <tr>
+                    <a href="{% url 'main:Step2A' student.id %}" class="name-l"><td>{{student}} </td></a>
+                  </tr>
+
+                  
+                  {% endif %}
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+   
 
     <h4 class="h4-admin">
     รายชื่อนักศึกษาที่ได้รับการตอบกลับแล้ว
     </h4>
+    <!-- <br> -->
 
-    <br>
-    {% for list in form %}
-    <div class="name-m">
-      <ol>
-        {%if list.booknumber is not None %}
-        <li>
-          {{list.name}} {{list.sername}} {{list.booknumber}} <br>
-        </li>  
-        {% endif %}
-      </ol> 
-    
-    </div>
-    <br>
-    {% endfor %}
+    <div class="containertable">
+      <div class="table">
+          <table class="content-table">
+              <thead>
+                  <tr>
+                      <th>ชื่อ</th>
+                      <th>นามสกุล</th>
+                      <th>หมายเลขหนังสือ</th>
+                  </tr>
+              </thead>
+
+              <tbody>
+                  
+                {% for list in form %}
+                {%if list.booknumber is not None %}
+                  <tr>
+                      <td>{{list.name}}</td>
+                      <td>{{list.sername}}</td>
+                      <td>{{list.booknumber}}</td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                  
+              </tbody>
+          </table>
+      </div>
   </div>
-
-    {% endif %}
-
+  {% endif %}
+</div>
+</div>
 
 {%endblock%}
