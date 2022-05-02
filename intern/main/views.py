@@ -1,3 +1,4 @@
+from .forms import Step2Forms
 import re
 from sys import intern
 from turtle import up
@@ -36,13 +37,13 @@ from io import *
 from django.forms.widgets import NullBooleanSelect
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect,Http404
+from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.views.generic.edit import CreateView
 from .forms import *
 from django.urls import reverse_lazy
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 
 from . import views
 # Create your views here.
@@ -86,7 +87,6 @@ def news_content(request, number):
             return response
     else:
         return HttpResponseNotFound
-
 
 
 # from django.template.loader import *
@@ -146,18 +146,19 @@ class Step1Form(CreateView):
     form_class = Step1Forms
     template_name = 'main/step1.html'
     success_url = reverse_lazy('main:Step2')
-    
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.booknumber = None
         return super().form_valid(form)
+
 
 class Step2Form(CreateView):
     pass
     # model = Form
     # form_class = Step1Forms
     # template_name = 'main/start.html'
-    # 
+    #
 
     # def form_valid(self, form):
     #     form.instance.user = self.request.user
@@ -165,26 +166,27 @@ class Step2Form(CreateView):
 
 
 def Step2toPDF(request):
-    
-    buffer = io.BytesIO() 
-    
+
+    buffer = io.BytesIO()
+
     form = get_object_or_404(Form, user=request.user)
-    c = canvas.Canvas(buffer)  
-    
+    c = canvas.Canvas(buffer)
+
     logo = ImageReader('logo.png')
     sig = ImageReader('image.png')
     date = form.date
-    month_name = 'x มกราคม กุมภาพันธ์ มีนาคม เมษายน พฤษภาคม มิถุนายน กรกฎาคม สิงหาคม กันยายน ตุลาคม พฤศจิกายน ธันวาคม'.split()[date.month]
+    month_name = 'x มกราคม กุมภาพันธ์ มีนาคม เมษายน พฤษภาคม มิถุนายน กรกฎาคม สิงหาคม กันยายน ตุลาคม พฤศจิกายน ธันวาคม'.split()[
+        date.month]
     thai_year = date.year + 543
     pdfmetrics.registerFont(TTFont('THSarabunIT๙', 'THSarabunIT๙.ttf'))
-    c.setFont("THSarabunIT๙", 14)  
-    c.drawImage(logo,260,730, mask='auto',width=80 ,height=80)
-    c.drawImage(sig,295,235, mask='auto',width=130 ,height=40)
+    c.setFont("THSarabunIT๙", 14)
+    c.drawImage(logo, 260, 730, mask='auto', width=80, height=80)
+    c.drawImage(sig, 295, 235, mask='auto', width=130, height=40)
     c.drawString(80, 740, "ที่ "+form.booknumber)
     c.drawString(400, 740, "คณะวิศวกรรมศาสตร์")
     c.drawString(400, 720, "มหาวิทยาลัยธรรมศาสตร์ ศูนย์รังสิต")
     c.drawString(400, 700, "อ. คลองหลวง จ. ปทุมธานี ๑๒๑๒๐")
-    c.drawString(320, 660, "%d %s %d "%(date.day, month_name, thai_year))
+    c.drawString(320, 660, "%d %s %d " % (date.day, month_name, thai_year))
     c.drawString(80, 620, "เรื่อง ขอความอนุเคราะห์นักศึกษาฝึกงานภาคฤดูร้อน")
     c.drawString(80, 590, "เรียน " + form.destination)
     c.drawString(80, 560, "สิ่งที่ส่งมาด้วย แบบตอบรับนักศึกษาฝึกงานภาคฤดูร้อน")
@@ -213,34 +215,24 @@ def Step2toPDF(request):
     c.drawString(80, 60, "อีเมล ece@engr.tu.ac.th")
 
     c.showPage()
-    c.save()  # บันทึกไฟล์
+    c.save()
     buffer.seek(0)
-    # ,as_attachment=True
     return FileResponse(buffer, filename='หนังสือขอความอนุเคราะห์ฝึกงานภาคฤดูร้อน/สหกิจศึกษา.pdf')
 
-# class Step2Form(CreateView):
-#     model = Form
-#     form_class = Step2Forms
-#     template_name = 'main/step2_Admin.html'
-#     success_url = reverse_lazy('main:Step2')
 
-#     def form_valid(self, form):
-#         return super().form_valid(form)
-from .forms import Step2Forms
-
-def step2A(request,pk):
+def step2A(request, pk):
     Book = Form.objects.get(id=pk)
-    context = {'Book':Book} 
+    context = {'Book': Book}
     if 'Book' not in request.POST:
-        return render(request,'main/step2_Admin.html',context)
+        return render(request, 'main/step2_Admin.html', context)
         # return render(request, "main/step2_Admin.html")
     else:
-        booknumber = request.POST.get('Book',None)
+        booknumber = request.POST.get('Book', None)
         Book.booknumber = booknumber
         Book.save()
         return redirect('admin_manage:Step2')
         # return render(request, "main:index")
-    
+
 
 def step2U(request):
     user = request.user.is_superuser
@@ -248,51 +240,53 @@ def step2U(request):
         form = Form.objects.get(user_id=request.user)
     else:
         form = Form.objects.all()
-    context = {"form": form,}
+    context = {"form": form, }
     return render(request, "main/step2.html", context)
 
-def step3 (request):
+
+def step3(request):
     files = Documentstep3.objects.all()
     if request.method == 'POST':
         form = Step3Forms(request.POST, request.FILES)
         filename = form['filename'].value()
-        
+
         if form.is_valid():
             form.save()
-			# eachsubject(request, form['subjectid'].value())
+            # eachsubject(request, form['subjectid'].value())
             return redirect('main:Step4')
         else:
             print(form.errors)
     else:
         form = Step3Forms()
         return render(request, 'main/step3.html', {
-        'form': form,
-        'files' : files
-    })
+            'form': form,
+            'files': files
+        })
 
     return redirect('main:Step4')
 
-def step4 (request):
+
+def step4(request):
     return render(request, "main/step4.html")
 
-def step5 (request):
+
+def step5(request):
     files = Documentstep5.objects.all()
     if request.method == 'POST':
-        form = Step3Forms(request.POST, request.FILES)
+        form = Step5Forms(request.POST, request.FILES)
         filename = form['filename'].value()
-        
+
         if form.is_valid():
             form.save()
-			# eachsubject(request, form['subjectid'].value())
+            # eachsubject(request, form['subjectid'].value())
             return redirect('main:Step5')
         else:
             print(form.errors)
     else:
-        form = Step3Forms()
+        form = Step5Forms()
         return render(request, 'main/step5.html', {
-        'form': form,
-        'files' : files
-    })
+            'form': form,
+            'files': files
+        })
 
     return redirect('main:index')
-    

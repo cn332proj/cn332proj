@@ -1,55 +1,50 @@
 {% extends "main/base_01.html" %}
+{%block content%}
+<form method="post" action="" enctype="multipart/form-data" class="box "
+  style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;">
+  <section class="header">
+    <section class="step-wizard">
+      <ul class="step-wizard-list">
+        <li class="step-wizard-item">
+          <span class="progress-count">1</span>
+          <span class="progress-label">Upload Form </span>
+        </li>
+        <li class="step-wizard-item current-item">
+          <span class="progress-count">2</span>
+          <span class="progress-label">Upload Form </span>
+        </li>
+        <li class="step-wizard-item  ">
+          <span class="progress-count">3</span>
+          <span class="progress-label">Upload Form </span>
+        </li>
+        <li class="step-wizard-item">
+          <span class="progress-count">4</span>
+          <span class="progress-label">Upload Form </span>
+        </li>
+        <li class="step-wizard-item">
+          <span class="progress-count">5</span>
+          <span class="progress-label">Upload Form </span>
+        </li>
+      </ul>
+    </section>
+    <div class="step2">
 
+      <h4 class="h4-step2">Step 2 : เอกสารคำร้องขอฝึกงาน</h4>
+      <br><br>
+      {% if form.booknumber is none %}
+      <article>
+        <a class="read-more-2">
+          นักศึกษาโปรดรอการดำเนินการสักครู่
+          <br><br><br>
+        </a>
+      </article>
+      <!-- ใส่สเตป2 ขึ้นว่ารอแอดมินดำเนินการ>> -->
 
-{%block content%}  
-<form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
-
-<section class="header">
-  <section class="step-wizard">
-    <ul class="step-wizard-list">
-      <li class="step-wizard-item">
-        <span class="progress-count">1</span>
-        <span class="progress-label">Upload Form </span>
-      </li>
-      <li class="step-wizard-item current-item">
-        <span class="progress-count">2</span>
-        <span class="progress-label">Upload Form </span>
-      </li>
-      <li class="step-wizard-item  ">
-        <span class="progress-count">3</span>
-        <span class="progress-label">Upload Form </span>
-      </li>
-      <li class="step-wizard-item">
-        <span class="progress-count">4</span>
-        <span class="progress-label">Upload Form </span>
-      </li>
-      <li class="step-wizard-item">
-        <span class="progress-count">5</span>
-        <span class="progress-label">Upload Form </span>
-      </li>
-    </ul>
-  </section>
-
-<div class="step2">
-
-  <h4 class="h4-step2">Step 2 : เอกสารคำร้องขอฝึกงาน</h4>
-  <br><br>
-
-  
-  {% if form.booknumber is none %}
-    <center>
-      <a class="read-more-2">
-        นักศึกษาโปรดรอการดำเนินการสักครู่
-        <br><br><br>
-      </a>
-    </center>
-  <!-- ใส่สเตป2 ขึ้นว่ารอแอดมินดำเนินการ>> -->
-
-  {% else %}
+      {% else %}
       <a href="{% url 'main:Step2toPDF'  %}" class="read-more">สร้างเอกสารคำร้อง</a><br><br><br>
       ให้นักศึกษาดาวโหลดไฟล์แล้วนำส่งบริษัท
       <a href="{% url 'main:Step3'  %}" class="read-more">Step 3</a><br><br><br>
-  {% endif %}
-  
-</div>
-{%endblock%}
+      {% endif %}
+
+    </div>
+    {%endblock%}
