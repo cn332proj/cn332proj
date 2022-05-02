@@ -1,0 +1,50 @@
+{% extends "admin_manage/base_01.html" %}
+
+
+{%block content%}  
+<form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
+
+<h1 class="heading">รายชื่อ<span>นักศึกษา</span></h1>
+  <div class="step2-admin">
+    {%if user.username == "admin" %}
+
+      <h4 class="h4-admin">รายชื่อนักศึกษาที่รอหนังสือตอบกลับ</h4>
+    <br>
+      {% for student in form %}
+    
+        {%if student.booknumber is None %}
+      
+        <a href="{% url 'main:Step2A' student.id %}" class="name-l">
+          <li>
+            {{student}} 
+          </li>
+        </a>
+      
+        {% endif %}
+    
+      {% endfor %}
+
+    <h4 class="h4-admin">
+    รายชื่อนักศึกษาที่ได้รับการตอบกลับแล้ว
+    </h4>
+
+    <br>
+    {% for list in form %}
+    <div class="name-m">
+      <ol>
+        {%if list.booknumber is not None %}
+        <li>
+          {{list.name}} {{list.sername}} {{list.booknumber}} <br>
+        </li>  
+        {% endif %}
+      </ol> 
+    
+    </div>
+    <br>
+    {% endfor %}
+  </div>
+
+    {% endif %}
+
+
+{%endblock%}

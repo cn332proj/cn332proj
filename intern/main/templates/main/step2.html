@@ -1,16 +1,17 @@
 {% extends "main/base_01.html" %}
 
+
 {%block content%}  
 <form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
 
-<!-- <section class="header">
+<section class="header">
   <section class="step-wizard">
     <ul class="step-wizard-list">
-      <li class="step-wizard-item current-item">
+      <li class="step-wizard-item">
         <span class="progress-count">1</span>
         <span class="progress-label">Upload Form </span>
       </li>
-      <li class="step-wizard-item">
+      <li class="step-wizard-item current-item">
         <span class="progress-count">2</span>
         <span class="progress-label">Upload Form </span>
       </li>
@@ -27,50 +28,11 @@
         <span class="progress-label">Upload Form </span>
       </li>
     </ul>
-</section>   -->
-<h1 class="heading">รายชื่อ<span>นักศึกษา</span></h1>
-<div class="step2-admin">
-{%if user.username == "admin" %}
-
-<h4 class="h4-admin">รายชื่อนักศึกษาที่รอหนังสือตอบกลับ</h4>
-  <br>
-  {% for student in form %}
-  
-    {%if student.booknumber is None %}
-    
-    <a href="{% url 'main:Step2A' student.id %}" class="name-l">
-      <li>
-      {{student}} 
-      </li>
-    </a>
-    
-    {% endif %}
-  
-  {% endfor %}
-  <h4 class="h4-admin">
-  รายชื่อนักศึกษาที่ได้รับการตอบกลับแล้ว
-  </h4>
-  <br>
-  {% for list in form %}
-  <div class="name-m">
-  <ol>
-    {%if list.booknumber is not None %}
-    <li>
-      {{list.name}} {{list.sername}} {{list.booknumber}} <br>
-    </li>  
-    {% endif %}
-  </ol> 
-   
-  </div>
-  <br>
-  {% endfor %}
-</div>
-
-{% else %}
+  </section>
 
 <div class="step2">
 
-  <h4 class="h4-step2">Step 2 : รอการดำเนินการ</h4>
+  <h4 class="h4-step2">Step 2 : เอกสารคำร้องขอฝึกงาน</h4>
   <br><br>
 
   
@@ -89,7 +51,5 @@
       <a href="{% url 'main:Step3'  %}" class="read-more">Step 3</a><br><br><br>
   {% endif %}
   
-{% endif %}
-
 </div>
 {%endblock%}

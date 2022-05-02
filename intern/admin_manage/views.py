@@ -8,6 +8,7 @@ from django.contrib.auth.models import User,auth
 import csv
 from user.models import Student
 import codecs
+from main.forms import *
 # Create your views here.
 
 
@@ -39,3 +40,13 @@ def add_student2(request):
 	
 def admin_dashboard(request):
     return render(request, "admin_manage/admin_dashboard.html")
+
+
+def step2U(request):
+    user = request.user.is_superuser
+    if not user:
+        form = Form.objects.get(user_id=request.user)
+    else:
+        form = Form.objects.all()
+    context = {"form": form,}
+    return render(request, "admin_manage/step2.html", context)

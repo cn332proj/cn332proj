@@ -8,9 +8,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
   <meta charset="utf-8">
-  <link rel="stylesheet" href="{%static 'css/main.css' %}">
+
+  <!-- <link rel="stylesheet" href="{%static 'css/main.css' %}">
   <link rel="stylesheet" href="{%static 'css/step.css' %}">
-  <link rel="stylesheet" href="{%static 'css/admin_main.css' %}">
+  <link rel="stylesheet" href="{%static 'css/admin_main.css' %}"> -->
+
+<link rel="stylesheet" href="{%static 'css/admin_style.css' %}">
+<link rel="stylesheet" href="{%static 'css/dashboard_style.css' %}">
+
+
   <!-- <title>{% block title %}Django Auth Tutorial{% endblock %}</title> -->
 </head>
 
@@ -25,7 +31,7 @@
     <nav>
       <a href="#">
         {% load static %}
-        <img src="{% static 'css/images/tulogo.svg' %}" /></a>
+        <img src="{% static 'css/images/TU_internship_logo.svg' %}" /></a>
      
   <div class="nav-links" id="navLinks">
     <ul>
@@ -44,9 +50,9 @@
       <li><a href="#" class="About">About</a>
        <div class="sub-about">
             <ul>
-                <li><a href="#">Contact us</a></li>
-                <li><a href="#">Git Hub</a></li>
-                <li><a href="#">Youtube</a></li>
+              <a href="#"><li>Contact us</li></a>
+              <a href="#"><li>Git Hub</li></a>
+              <a href="#"><li>Youtube</li></a>
             </ul>
         </div>
       </li>

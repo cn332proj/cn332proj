@@ -238,7 +238,7 @@ def step2A(request,pk):
         booknumber = request.POST.get('Book',None)
         Book.booknumber = booknumber
         Book.save()
-        return redirect('/main/Step2')
+        return redirect('admin_manage:Step2')
         # return render(request, "main:index")
     
 
@@ -284,7 +284,7 @@ def step5 (request):
         if form.is_valid():
             form.save()
 			# eachsubject(request, form['subjectid'].value())
-            return redirect('Step5')
+            return redirect('main:Step5')
         else:
             print(form.errors)
     else:
@@ -295,3 +295,4 @@ def step5 (request):
     })
 
     return redirect('main:index')
+    

@@ -1,6 +1,7 @@
 {% extends "admin_manage/base_01.html" %}
 
 {% block content %}
+{% load static %}
 
 {% for i in messages%}
  <div class="alert alert-success" role="alert">   
@@ -10,19 +11,29 @@
  {%endfor%} 
 
 <br><br>
-<center><h2>Admin Dashboard</h2>
-<br><br>
+<div class="box"></div>
+<h2>Admin Dashboard</h2>
+<!-- <br><br> -->
 
-  <div class="card"> &nbsp;&nbsp;&nbsp; 
-      <a style="text-decoration: none;" href="{% url 'admin_manage:add_student' %}">ลงทะเบียนนักศึกษาใหม่</a>
-  </div>
+<div class="menu_box">
   
-  <div class="card"> &nbsp;&nbsp;&nbsp; 
-    <a style="text-decoration: none;" href="{% url 'admin_manage:add_student' %}">ดูแบบฟอร์มขอความอนุเคราะห์</a>
-  </div><br>
+  <div class="card-area">
+    <a href="{% url 'admin_manage:add_student' %}" class="card">
+      <img src="{% static 'css/images/add_student_icon.svg' %}">
+      ลงทะเบียนนักศึกษาใหม่
+    </a>
+    <a href="{% url 'admin_manage:Step2' %}" class="card">
+      <img src="{% static 'css/images/docs_icon.svg' %}">
+      ดูแบบฟอร์มขอความอนุเคราะห์
+    </a>
+  </div>
+
+  <i><img src="{% static 'css/images/paper_plane.svg' %}"></i>
+</div>
 
 
-<br><br><br>
+
+<br><br>
 <!-- <h3> &nbsp;&nbsp;&nbsp; <a href="{% url 'user:logout' %}">logout</a> </h3><br> -->
-</center>
+
 {% endblock %}
