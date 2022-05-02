@@ -302,21 +302,21 @@ nav .fa{
 }
 
 .containertable .content-table tbody tr a {
-  position: relative;
-  display: inline-block;
+  /* position: relative;
+  display: inline-block; */
   padding: 5px 10px;
-  background: #246bdd;
+  /* background: #c00832; */
   /* background: rgb(185, 185, 185); */
-  color: white;
-  border-radius: 10px;
+  color: #c00832;
+  /* border-radius: 10px; */
   text-decoration: none;
-  transition: 0.5s;
+  /* transition: 0.5s; */
   font-weight: bold;
 }
 
 .containertable .content-table tbody tr a:hover {
-  background: #d6e6ff;
-  color: #246bdd; /* #4187f6; */
+  /* background: #ffd6d6; */
+  color: #960a2a; /*#4187f6;*/
 }
 
 /*ิbookmark*/

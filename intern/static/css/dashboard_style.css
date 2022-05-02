@@ -216,8 +216,40 @@
 }
 
 .body .content .add_student_card form {
+    margin-top: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     color: white;
     width: 70%;
+}
+
+.body .content .add_student_card form .input_box {
+    padding: 15px;
+    background-color: #464646;
+    border: 2px solid white;
+    color: white;
+    width: 70%;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.body .content .add_student_card form .input_box:focus {
+    box-shadow: none;
+}
+
+.body .content .add_student_card form .btn {
+    padding: 14px;
+    background-color: white;
+    color: #464646;
+    border: 2px solid white;
+    border-left: 4px solid white;
+    width: 30%;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
 }
 
 .body .content .add_student_card .h4-admin {

@@ -27,7 +27,7 @@
                 {% for student in form %}
                 {%if student.booknumber is None %}
                   <tr>
-                    <a href="{% url 'main:Step2A' student.id %}" class="name-l"><td>{{student}} </td></a>
+                    <td><a href="{% url 'main:Step2A' student.id %}" class="name-l">{{student}}</a></td>
                   </tr>
 
                   
