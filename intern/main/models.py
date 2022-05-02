@@ -71,6 +71,19 @@ class Documentstep3 (models.Model):
         super().delete(*args, **kwargs)
 
 
+class Documentstep4(models.Model):
+    filename = models.CharField(max_length=100)
+    attachment = models.FileField(upload_to=upload_to, validators=[
+                                  validate_file_extension], null=True)
+
+    def __str__(self):
+        return self.filename
+
+    def delete(self, *args, **kwargs):
+        self.attachment.delete()
+        super().delete(*args, **kwargs)
+
+
 class Documentstep5 (models.Model):
     filename = models.CharField(max_length=100)
     attachment = models.FileField(upload_to=upload_to, validators=[

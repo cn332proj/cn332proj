@@ -267,7 +267,25 @@ def step3(request):
 
 
 def step4(request):
-    return render(request, "main/step4.html")
+    files = Documentstep4.objects.all()
+    if request.method == 'POST':
+        form = Step4Forms(request.POST, request.FILES)
+        filename = form['filename'].value()
+
+        if form.is_valid():
+            form.save()
+            # eachsubject(request, form['subjectid'].value())
+            return redirect('main:Step5')
+        else:
+            print(form.errors)
+    else:
+        form = Step4Forms()
+        return render(request, 'main/step4.html', {
+            'form': form,
+            'files': files
+        })
+
+    return redirect('main:Step5')
 
 
 def step5(request):

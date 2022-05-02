@@ -33,6 +33,17 @@ class Step3Forms(forms.ModelForm):
         self.fields['filename'].widget.attrs.update(style='max-width: 50em')
 
 
+class Step4Forms(forms.ModelForm):
+    class Meta:
+        model = Documentstep4
+        fields = ('filename', 'attachment')
+
+    def __init__(self, *args, **kwargs):
+        super(Step4Forms, self).__init__(*args, **kwargs)
+
+        self.fields['filename'].widget.attrs.update(style='max-width: 50em')
+
+
 class Step5Forms(forms.ModelForm):
     class Meta:
         model = Documentstep5

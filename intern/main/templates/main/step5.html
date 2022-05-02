@@ -30,7 +30,7 @@
 <br><br>
 <br><br>
 <div class="step">
-  <h4>Step 5 : อัพโหลดรายงานฝึกงาน</h4>
+  <h4>Step 5 : รายงานฝึกงาน</h4>
   <br><br>
   <form method="post" action="" enctype="multipart/form-data" class="box "
     style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;">
@@ -38,7 +38,7 @@
     {% csrf_token %}
     <!-- {{ form.as_p}} -->
     <div class="center">
-      <h6>รายงานฝึกงาน</h6>
+      <h6><a href="/static/css/pdf/5_การเขียนรายงานฝึกงาน.pdf">เขียนรายงานฝึกงาน</a></h6>
       <section class="filename">
         <label class="name-title">Filename :</label>
         <section class="input">{{ form.filename}}</section>
