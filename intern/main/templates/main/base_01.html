@@ -12,40 +12,47 @@
     crossorigin="anonymous"></script>
 
   <meta charset="utf-8">
-  <link rel="stylesheet" href="{%static 'css/main.css' %}">
+
+  <!-- <link rel="stylesheet" href="{%static 'css/main.css' %}">
+  
+  <link rel="stylesheet" href="{%static 'css/step2.css' %}"> -->
+  
   <link rel="stylesheet" href="{%static 'css/step.css' %}">
-  <link rel="stylesheet" href="{%static 'css/step2.css' %}">
+  <link rel="stylesheet" href="{%static 'css/dashboard_style.css' %}">
+  <link rel="stylesheet" href="{%static 'css/admin_style.css' %}">
+
   <!-- <title>{% block title %}Django Auth Tutorial{% endblock %}</title> -->
 </head>
 {% comment %}
 {% endcomment %}
 <section class="header">
   <nav>
-    <a href="#">
+    <a href="{% url 'main:index' %}">
       {% load static %}
-      <img src="{% static 'css/images/old_tulogo2.svg' %}" /></a>
+      <!-- <img src="{% static 'css/images/old_tulogo2.svg' %}" class="logo"/></a> -->
+      <img src="{% static 'css/images/new_TU_internship_logo.svg' %}" class="logo"/></a>
 
     <div class="nav-links" id="navLinks">
       <ul>
 
         <li><a href="{% url 'main:index' %}">Home</a></li>
         <li><a href="{% url 'main:news' %}">Internship</a></li>
-        <li><a href="#">Menu</a>
+        <!-- <li><a href="#">Menu</a>
           <div class="sub-about">
             <ul>
-              <li><a href="#">sub1</a></li>
-              <li><a href="#">sub2</a></li>
-              <li><a href="#">sub3</a></li>
+              <a href="#"><li>sub1</li></a>
+              <a href="#"><li>sub2</li></a>
+              <a href="#"><li>sub3</li></a>
         </li>
       </ul>
     </div>
-    </li>
+    </li> -->
     <li><a href="#" class="About">About</a>
       <div class="sub-about">
         <ul>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Git Hub</a></li>
-          <li><a href="#">Youtube</a></li>
+          <!-- <a href="#"><li>Contact us</li></a> -->
+          <a href="https://github.com/cn332proj/cn332proj"><li>GitHub</li></a>
+          <a href="#"><li>Youtube</li></a>
         </ul>
       </div>
     </li>

@@ -167,20 +167,17 @@
     border: 2px solid #c00832;
 }
 
-.body .content .add_student_card .content button {
-    background-color: #c00832;
-    border: #c00832;
-    padding-left: 3vw;
-    padding-right: 3vw;
+.body .content .add_student_card .content .Add-btn {
+    background-color: white;
+    border: white;
+    padding: 2vh 3vw;
     border-radius: 20px;
     transition: 50ms;
 }
 
-.body .content .add_student_card .content button:hover {
+.body .content .add_student_card .content .Add-btn:hover {
     background-color: #b80d35;
     border: #b80d35;
-    padding-left: 3vw;
-    padding-right: 3vw;
     border-radius: 20px;
 }
 
@@ -237,6 +234,8 @@
 
 .body .content .add_student_card form .input_box:focus {
     box-shadow: none;
+    outline: none;
+    border: 2px solid #c00832;
 }
 
 .body .content .add_student_card form .btn {
@@ -250,6 +249,11 @@
     border-top-right-radius: 15px;
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
+}
+
+.body .content .add_student_card form .btn:hover {
+    background-color: #c00832;
+    border: 2px solid #c00832;
 }
 
 .body .content .add_student_card .h4-admin {

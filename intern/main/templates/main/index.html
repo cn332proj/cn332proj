@@ -1,14 +1,44 @@
 {% extends "main/base_01.html" %}
 {%block content%}
-<div class="text-box">
+{% load static %}
+
+<!-- <div class="text-box">
   <h1> Public Relations </h1>
   <p> Please select your ingredient and enjoy your recipe</p>
+
   {% for new in news %}
   <img src="{{new.img.url}}">
   <h3>{{ new.header }}</h3>
   <p>{{ new.context }}</p>
   <a href="{% url 'main:news_content' new.id %}" class="read-more">detail</a>
   {% endfor %}
+
   <a href="{% url 'main:Step1' %}" class="hero-btn">START STEP</a>
+</div> -->
+
+<div class="box"></div>
+
+<h2>Thammasat Internship<br>System</h2>
+
+<div class="menu_box">
+  
+  <div class="card-area">
+    <a href="{% url 'main:news' %}" class="card">
+      <img src="{% static 'css/images/finding_icon.svg' %}">
+      บริษัทที่เปิดรับนักศึกษาฝึกงาน
+    </a>
+    <a href="{% url 'main:Step1' %}" class="card">
+      <img src="{% static 'css/images/process_1.svg' %}">
+      เริ่มขั้นตอนการฝึกงานภาคฤดูร้อน
+    </a>
+
+  </div>
+
+  <i><img src="{% static 'css/images/paper_plane.svg' %}"></i>
 </div>
+
+
+
+<br><br>
+
 {%endblock%}

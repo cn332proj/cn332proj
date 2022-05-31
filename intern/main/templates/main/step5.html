@@ -1,27 +1,27 @@
 {% extends "main/base_01.html" %}
 
 {%block content%}
-<section class="step-wizard">
+<!-- <section class="step-wizard">
   <ul class="step-wizard-list">
     <li class="step-wizard-item">
       <span class="progress-count">1</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 3</span>
     </li>
     <li class="step-wizard-item">
       <span class="progress-count">2</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 3</span>
     </li>
     <li class="step-wizard-item  ">
       <span class="progress-count">3</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 3</span>
     </li>
     <li class="step-wizard-item">
       <span class="progress-count">4</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 3</span>
     </li>
     <li class="step-wizard-item current-item">
       <span class="progress-count">5</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 3</span>
     </li>
 
   </ul>
@@ -36,7 +36,7 @@
     style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;">
 
     {% csrf_token %}
-    <!-- {{ form.as_p}} -->
+    
     <div class="center">
       <h6><a href="/static/css/pdf/5_การเขียนรายงานฝึกงาน.pdf">เขียนรายงานฝึกงาน</a></h6>
       <section class="filename">
@@ -50,6 +50,56 @@
     </div>
     <button type="submit" class="start_submit">Submit</button>
   </form>
-</div>
+</div> -->
+
+<section class="content_step">
+  <div class="step">
+    <h4>Step 5 : รายงานฝึกงาน</h4>
+    
+  <form method="post" action="" enctype="multipart/form-data" class="box ">
+
+    {% csrf_token %}
+    
+    <div class="centerS3">
+      <h6><a href="/static/css/pdf/5_การเขียนรายงานฝึกงาน.pdf">เขียนรายงานฝึกงาน</a></h6>
+      <section class="filename">
+        <label class="name-title">Filename :</label>
+        <section class="input">{{ form.filename}}</section>
+      </section>
+      <section class="sec-name">
+        <label class="name">Attachment :</label>
+        <section class="input">{{ form.attachment}}</section>
+      </section>
+    </div>
+    <button type="submit" class="start_submit">Submit</button>
+  </form>
+  </div>
+
+  <section class="step-wizard">
+    <ul class="step-wizard-list">
+      <li class="step-wizard-item">
+        <span class="progress-count">1</span>
+        <span class="progress-label">Step 1</span>
+      </li>
+      <li class="step-wizard-item">
+        <span class="progress-count">2</span>
+        <span class="progress-label">Step 2</span>
+      </li>
+      <li class="step-wizard-item">
+        <span class="progress-count">3</span>
+        <span class="progress-label">Step 3</span>
+      </li>
+      <li class="step-wizard-item">
+        <span class="progress-count">4</span>
+        <span class="progress-label">Step 4</span>
+      </li>
+      <li class="step-wizard-item current-item">
+        <span class="progress-count">5</span>
+        <span class="progress-label">Step 5</span>
+      </li>
+  
+    </ul>
+  </section>
+</section>
 
 {%endblock%}

@@ -297,7 +297,7 @@ def step5(request):
         if form.is_valid():
             form.save()
             # eachsubject(request, form['subjectid'].value())
-            return redirect('main:Step5')
+            return redirect('main:index')
         else:
             print(form.errors)
     else:

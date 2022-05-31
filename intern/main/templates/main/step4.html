@@ -1,33 +1,55 @@
 {% extends "main/base_01.html" %}
+{% load static %}
 {%block content%}
+
+<section class="content_step">
+  <div class="step">
+    <h4>Step 4 : แบบสอบถามสำหรับสถานประกอบการ</h4>
+    <form method="post" action="" enctype="multipart/form-data" class="box ">
+
+      {% csrf_token %}
+      <div class="centerS3">
+        <h6><a href="/static/css/pdf/4_แบบสอบถามสำหรับสถานประกอบการ.pdf">แบบสอบถามสำหรับสถานประกอบการ</a></h6>
+        <section class="filename">
+          <label class="name-title">Filename :</label>
+          <section class="input">{{ form.filename}}</section>
+        </section>
+        <section class="sec-name">
+          <label class="name">Attachment :</label>
+          {{ form.attachment}}
+        </section>
+      </div>
+      <button type="submit" class="start_submit">Next Step ></button>
+    </form>
+  </div>
+
+
 <section class="step-wizard">
   <ul class="step-wizard-list">
     <li class="step-wizard-item">
       <span class="progress-count">1</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 1</span>
     </li>
     <li class="step-wizard-item">
       <span class="progress-count">2</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 2</span>
     </li>
     <li class="step-wizard-item  ">
       <span class="progress-count">3</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 3</span>
     </li>
     <li class="step-wizard-item current-item">
       <span class="progress-count">4</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 4</span>
     </li>
     <li class="step-wizard-item">
       <span class="progress-count">5</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 5</span>
     </li>
 
   </ul>
 </section>
-
-<br><br>
-<br><br>
+</section>
 <!-- <div class="step">
   <h4>Step 4 : แบบสอบถามสำหรับสถานประกอบการ</h4>
   <form method="post" action="" enctype="multipart/form-data" class="box "
@@ -55,14 +77,11 @@
   </form>
  </div> -->
 
-<div class="step">
+<!-- <div class="step">
   <h4>Step 4 : แบบสอบถามสำหรับสถานประกอบการ</h4>
   <br><br>
-  <form method="post" action="" enctype="multipart/form-data" class="box "
-    style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;">
-
+  <form method="post" action="" enctype="multipart/form-data" class="box ">
     {% csrf_token %}
-    <!-- {{ form.as_p}} -->
     <div class="center">
       <h6><a href="/static/css/pdf/4_แบบสอบถามสำหรับสถานประกอบการ.pdf">แบบสอบถามสำหรับสถานประกอบการ</a></h6>
       <section class="filename">
@@ -76,5 +95,5 @@
     </div>
     <button type="submit" class="start_submit">Next Step</button>
   </form>
-</div>
+</div> -->
 {%endblock%}

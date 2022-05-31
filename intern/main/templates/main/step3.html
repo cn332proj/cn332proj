@@ -1,72 +1,71 @@
 {% extends "main/base_01.html" %}
-
 {%block content%}
+{% load static %}
+
+<section class="content_step">
+<div class="step">
+  <h4>Step 3 : แบบประเมินและใบบันทึกเวลา</h4>
+  <form method="post" action="" enctype="multipart/form-data" class="box ">
+
+    {% csrf_token %}
+    <div class="centerS3">
+      <a href="/static/css/pdf/3_a_ตัวอย่าง_หนังสือส่งตัว.pdf">ตัวอย่างหนังสือส่งตัว</a>
+      <a href="/static/css/pdf/3_b_แบบประเมิน_สำหรับสถานประกอบการ.pdf">แบบประเมินสำหรับสถานประกอบการ</a>
+      <section class="filename">
+        <label class="name-title">Filename :</label>
+        {{ form.filename }}
+      </section>
+      <section class="sec-name">
+        <label class="name">Attachment :</label>
+        {{ form.attachment }}
+      </section>
+      <a href="/static/css/pdf/3_c_ใบบันทึกเวลาฝึกงานนักศึกษา.pdf">ใบบันทึกเวลาฝึกงานนักศึกษา</a>
+      <section class="filename">
+        <label class="name-title">Filename :</label>
+        {{ form.filename }}
+      </section>
+      <section class="sec-name">
+        <label class="name">Attachment :</label>
+        {{ form.attachment }}
+      </section>
+      <a href="/static/css/pdf/3_c_ใบบันทึกเวลาฝึกงานนักศึกษา.pdf">แบบประเมินสำหรับนักศึกษา</a>
+      <section class="filename">
+        <label class="name-title">Filename :</label>
+        {{ form.filename }}
+      </section>
+      <section class="sec-name">
+        <label class="name">Attachment :</label>
+        {{ form.attachment }}
+      </section>
+    </div>
+    <button type="submit" class="start_submit">Next Step ></button>
+  </form>
+</div>
+
 <section class="step-wizard">
   <ul class="step-wizard-list">
     <li class="step-wizard-item">
       <span class="progress-count">1</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 1</span>
     </li>
     <li class="step-wizard-item">
       <span class="progress-count">2</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 2</span>
     </li>
     <li class="step-wizard-item current-item">
       <span class="progress-count">3</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 3</span>
     </li>
     <li class="step-wizard-item">
       <span class="progress-count">4</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 4</span>
     </li>
     <li class="step-wizard-item">
       <span class="progress-count">5</span>
-      <span class="progress-label">Upload Form </span>
+      <span class="progress-label">Step 5</span>
     </li>
 
   </ul>
 </section>
-<br><br>
-<br><br>
-<div class="step">
-  <h4>Step 3 : แบบประเมินและใบบันทึกเวลา</h4>
-  <br><br>
-  <form method="post" action="" enctype="multipart/form-data" class="box "
-    style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;">
-
-    {% csrf_token %}
-    <div class="center">
-      <h5><a href="/static/css/pdf/3_a_ตัวอย่าง_หนังสือส่งตัว.pdf">ตัวอย่างหนังสือส่งตัว</a></h5>
-      <h6><a href="/static/css/pdf/3_b_แบบประเมิน_สำหรับสถานประกอบการ.pdf">แบบประเมินสำหรับสถานประกอบการ</a></h6>
-      <section class="filename">
-        <label class="name-title">Filename :</label>
-        <section class="input">{{ form.filename}}</section>
-      </section>
-      <section class="sec-name">
-        <label class="name">Attachment :</label>
-        <section class="input">{{ form.attachment}}</section>
-      </section>
-      <h6><a href="/static/css/pdf/3_c_ใบบันทึกเวลาฝึกงานนักศึกษา.pdf">ใบบันทึกเวลาฝึกงานนักศึกษา</a></h6>
-      <section class="filename">
-        <label class="name-title">Filename :</label>
-        <section class="input">{{ form.filename}}</section>
-      </section>
-      <section class="sec-name">
-        <label class="name">Attachment :</label>
-        <section class="input">{{ form.attachment}}</section>
-      </section>
-      <h6><a href="/static/css/pdf/3_c_ใบบันทึกเวลาฝึกงานนักศึกษา.pdf">แบบประเมินสำหรับนักศึกษา</a></h6>
-      <section class="filename">
-        <label class="name-title">Filename :</label>
-        <section class="input">{{ form.filename}}</section>
-      </section>
-      <section class="sec-name">
-        <label class="name">Attachment :</label>
-        <section class="input">{{ form.attachment}}</section>
-      </section>
-    </div>
-    <button type="submit" class="start_submit">Next Step</button>
-  </form>
-</div>
-
+</section>
 {%endblock%}

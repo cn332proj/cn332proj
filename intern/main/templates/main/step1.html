@@ -1,73 +1,48 @@
 {% extends "main/base_01.html" %}
 {%block content%}
-<section class="step-wizard">
-  <ul class="step-wizard-list">
-    <li class="step-wizard-item current-item">
-      <span class="progress-count">1</span>
-      <span class="progress-label">Upload Form </span>
-    </li>
-    <li class="step-wizard-item">
-      <span class="progress-count">2</span>
-      <span class="progress-label">Upload Form </span>
-    </li>
-    <li class="step-wizard-item  ">
-      <span class="progress-count">3</span>
-      <span class="progress-label">Upload Form </span>
-    </li>
-    <li class="step-wizard-item">
-      <span class="progress-count">4</span>
-      <span class="progress-label">Upload Form </span>
-    </li>
-    <li class="step-wizard-item">
-      <span class="progress-count">5</span>
-      <span class="progress-label">Upload Form </span>
-    </li>
+{% load static %}
 
-  </ul>
-</section>
-<br><br>
-<br><br>
+<section class="content_step">
 <div class="step">
   <h4>Step 1 : อัพโหลดแบบฟอร์มหนังสือขอความอนุเคราะห์</h4>
-  <br><br>
-  <form method="post" action="" enctype="multipart/form-data" class="box "
-    style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;">
+  <form method="post" action="" enctype="multipart/form-data">
 
     {% csrf_token %}
     <div class="center">
       <div class="set">
+        <section class="sec-date">
+          <label class="date">เดือน/วัน/ปี : </label>
+          {{ form.date }}
+        </section>
+
         <section class="sec-nametitle">
-          <label class="name-title">คำนำหน้า:</label>
-          <section class="input">{{ form.nameTitle }}</section>
+          <label class="name-title">คำนำหน้า: </label>
+          {{ form.nameTitle  }}
         </section>
 
         <section class="sec-name">
           <label class="name">ชื่อ :</label>
-          <section class="input">{{ form.name}}</section>
+          {{ form.name }}
         </section>
 
         <section class="sec-surname">
           <label class="surname">นามสกุล :</label>
-          <section class="input">{{ form.sername}}</section>
+          {{ form.sername }}
         </section>
       </div>
 
       <div class="set">
         <section class="sec-id">
           <label class="id">รหัสนักศึกษา :</label>
-          <section class="input">{{ form.studentID}}</section>
+          {{ form.studentID }}
         </section>
 
-        <section class="sec-date">
-          <label class="date">เดือน/วัน/ปี :</label>
-          <section class="input">{{ form.date}}</section>
-
-        </section>
+        
       </div>
       <div class="set">
         <section class="sec-major">
           <label class="major">คณะ :</label>
-          <section class="input">{{ form.major}}</section>
+          {{ form.major }}
 
         </section>
 
@@ -75,7 +50,7 @@
 
         <section class="sec-company">
           <label class="company">ชื่อบริษัท :</label>
-          <section class="input">{{ form.company}}</section>
+          {{ form.company }}
 
         </section>
       </div>
@@ -83,14 +58,14 @@
       <div class="set">
         <section class="sec-address">
           <label class="address">ที่อยู่ :</label>
-          <section class="input"> {{ form.addresscompany}}</section>
+           {{ form.addresscompany }}
 
         </section>
 
 
         <section class="sec-destination">
           <label class="destination">ตำแหน่ง :</label>
-          <section class="input">{{ form.destination}}</section>
+          {{ form.destination }}
 
 
         </section>
@@ -99,13 +74,13 @@
       <div class="set">
         <section class="sec-phone">
           <label class="phone">เบอร์โทร :</label>
-          <section class="input">{{ form.phone}}</section>
+          {{ form.phone }}
 
         </section>
 
         <section class="sec-email">
           <label class="email">Email :</label>
-          <section class="input">{{ form.email}}</section>
+          {{ form.email }}
 
         </section>
       </div>
@@ -116,5 +91,30 @@
 </div>
 
 
+<section class="step-wizard">
+  <ul class="step-wizard-list">
+    <li class="step-wizard-item current-item">
+      <span class="progress-count">1</span>
+      <span class="progress-label">Step 1</span>
+    </li>
+    <li class="step-wizard-item">
+      <span class="progress-count">2</span>
+      <span class="progress-label">Step 2</span>
+    </li>
+    <li class="step-wizard-item  ">
+      <span class="progress-count">3</span>
+      <span class="progress-label">Step 3</span>
+    </li>
+    <li class="step-wizard-item">
+      <span class="progress-count">4</span>
+      <span class="progress-label">Step 4</span>
+    </li>
+    <li class="step-wizard-item">
+      <span class="progress-count">5</span>
+      <span class="progress-label">Step 5</span>
+    </li>
 
+  </ul>
+</section>
+</section>
 {%endblock%}
